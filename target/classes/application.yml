@@ -1,4 +1,5 @@
-#访问配置
+
+#��������
 server:
   port: 8181
   servlet:
@@ -7,9 +8,9 @@ server:
     max-threads: 1000
     uri-encoding: UTF-8
 
-#Spring配置
+#Spring����
 spring:
-  #  Spring数据库配置
+  #  Spring���ݿ�����
   datasource:
     url: jdbc:mysql://10.10.4.170:3306/venue_reservation_system?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
@@ -26,29 +27,29 @@ spring:
     view:
       prefix: /html/
       suffix: .html
-  #热部署
+  #�Ȳ���
   devtools:
     restart:
       enabled: true
-      #设置重启的目录
+      #����������Ŀ¼
       additional-paths: src/main/java
-      exclude: WEB-INF/** #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/** #classpathĿ¼�µ�WEB-INF�ļ��������޸Ĳ�����
   http:
     log-request-details: false
 
-#Mybatis-plus配置
+#Mybatis-plus����
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.genolo.venue_reservation_system.model
   type-aliases-super-type: java.lang.Object
-  #原生mybatis配置
+  # ԭ��mybatis����
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
     auto-mapping-unknown-column-behavior: warning
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  #全局策略配置
+  # ȫ�ֲ�������
   global-config:
     refresh: true
     db-config:

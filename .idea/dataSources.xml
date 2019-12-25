@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="VenueReservationSystem" uuid="9f772b4f-37fe-41ed-a494-7516af4b80d2">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <remarks>场馆预约系统</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://10.10.4.170:3306/venue_reservation_system?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</jdbc-url>
+    </data-source>
+  </component>
+</project>
