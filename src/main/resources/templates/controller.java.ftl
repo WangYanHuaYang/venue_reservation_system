@@ -1,7 +1,7 @@
 package ${package.Controller};
 
-import ${package}.Util.FileUtil;
-import ${package}.Util.Msg;
+import com.genolo.venue_reservation_system.Util.FileUtil;
+import com.genolo.venue_reservation_system.Util.Msg;
 import ${package.Entity}.${entity};
 import ${package.ServiceImpl}.${table.serviceImplName};
 import io.swagger.annotations.Api;
