@@ -93,7 +93,7 @@ public class MybatisAutoGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.genolo.smart_meeting_room");
+        pc.setParent("com.genolo.venue_reservation_system");
         pc.setEntity("model");
         pc.setServiceImpl("service");
         pc.setMapper("dao");
