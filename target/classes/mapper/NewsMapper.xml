@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.NewsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.News">
+        <id column="id" property="id" />
+        <result column="news_title" property="newsTitle" />
+        <result column="news_content" property="newsContent" />
+        <result column="create_user_id" property="createUserId" />
+        <result column="create_user_name" property="createUserName" />
+        <result column="organization" property="organization" />
+        <result column="release_time" property="releaseTime" />
+        <result column="release_state" property="releaseState" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+        <result column="reserve1" property="reserve1" />
+        <result column="reserve2" property="reserve2" />
+        <result column="reserve3" property="reserve3" />
+        <result column="reserve4" property="reserve4" />
+        <result column="reserve5" property="reserve5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, news_title, news_content, create_user_id, create_user_name, organization, release_time, release_state, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5
+    </sql>
+
+</mapper>

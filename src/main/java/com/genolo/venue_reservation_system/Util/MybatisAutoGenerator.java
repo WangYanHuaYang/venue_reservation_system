@@ -63,7 +63,7 @@ public class MybatisAutoGenerator {
         // 全局配置
         String projectPath = System.getProperty("user.dir");
         mpg.setGlobalConfig(new GlobalConfig()
-                .setIdType(IdType.ID_WORKER_STR)
+                .setIdType(IdType.ASSIGN_UUID)
                 .setOutputDir(projectPath + "/src/main/java")//输出目录
                 .setFileOverride(true)// 是否覆盖文件
                 .setActiveRecord(true)// 开启 activeRecord 模式
@@ -115,14 +115,6 @@ public class MybatisAutoGenerator {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-//        focList.add(new FileOutConfig("/templates/ajaxsend.js.ftl") {
-//            @Override
-//            public String outputFile(TableInfo tableInfo) {
-//                // 自定义输入文件名称
-//                return projectPath + "/src/main/resources/static/ajax/"
-//                        + "/" + tableInfo.getEntityName() + "Ajax" + StringPool.DOT+"js";
-//            }
-//        });
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
         mpg.setTemplate(new TemplateConfig()
@@ -145,15 +137,15 @@ public class MybatisAutoGenerator {
                         .setInclude(tablename) // 需要生成的表
                         .setRestControllerStyle(true)
                         //.setExclude(new String[]{"test"}) // 排除生成的表
-                        //.setSuperEntityClass("com.baomidou.demo.TestEntity")// 自定义实体父类
-                        //.setSuperEntityColumns(new String[]{"test_id"})// 自定义实体，公共字段
+//                        .setSuperEntityClass("com.genolo.venue_reservation_system.BaseModel")// 自定义实体父类
+//                        .setSuperEntityColumns(new String[]{"id","create_time","update_time","del_state"})// 自定义实体，公共字段
                         //.setTableFillList(tableFillList)
                         //.setSuperMapperClass("com.baomidou.mybatisplus.mapper.BaseMapper")// 自定义 mapper 父类 默认BaseMapper
                         //.setSuperServiceClass("com.baomidou.demo.TestService")// 自定义 service 父类 默认IService
-                        //.setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl")// 自定义 service 实现类父类 默认ServiceImpl
+                        .setSuperServiceImplClass("com.genolo.venue_reservation_system.BaseService")// 自定义 service 实现类父类 默认ServiceImpl
                         //.setSuperControllerClass("com.kichun."+packageName+".controller.AbstractController")// 自定义 controller 父类
                         //.setEntityColumnConstant(true)// 【实体】是否生成字段常量（默认 false）
-                        //.setEntityBuilderModel(true)// 【实体】是否为构建者模型（默认 false）
+//                        .setEntityBuilderModel(true)// 【实体】是否为构建者模型（默认 false）
                         .setEntityLombokModel(true)// 【实体】是否为lombok模型（默认 false
                         .setRestControllerStyle(true)
                         //.setEntityBooleanColumnRemoveIsPrefix(true)// Boolean类型字段是否移除is前缀处理

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.SysPermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.SysPermission">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="permission_name" property="permissionName" />
+        <result column="permission_url" property="permissionUrl" />
+        <result column="permission_css" property="permissionCss" />
+        <result column="permission_type" property="permissionType" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id, permission_name, permission_url, permission_css, permission_type, create_time, update_time, del_state
+    </sql>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.MessageCenterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.MessageCenter">
+        <id column="id" property="id" />
+        <result column="message_content" property="messageContent" />
+        <result column="send_user_id" property="sendUserId" />
+        <result column="send_user_name" property="sendUserName" />
+        <result column="send_time" property="sendTime" />
+        <result column="send_state" property="sendState" />
+        <result column="read_state" property="readState" />
+        <result column="receive_user_id" property="receiveUserId" />
+        <result column="receive_user_name" property="receiveUserName" />
+        <result column="receive_user_phone" property="receiveUserPhone" />
+        <result column="receive_user_e_mail" property="receiveUserEMail" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+        <result column="reserve1" property="reserve1" />
+        <result column="reserve2" property="reserve2" />
+        <result column="reserve3" property="reserve3" />
+        <result column="reserve4" property="reserve4" />
+        <result column="reserve5" property="reserve5" />
+        <result column="reserve6" property="reserve6" />
+        <result column="reserve7" property="reserve7" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, message_content, send_user_id, send_user_name, send_time, send_state, read_state, receive_user_id, receive_user_name, receive_user_phone, receive_user_e_mail, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5, reserve6, reserve7
+    </sql>
+
+</mapper>

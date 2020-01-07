@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.AppointmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.Appointment">
+        <result column="id" property="id" />
+        <result column="appointment_user_name" property="appointmentUserName" />
+        <result column="appointment_team_name" property="appointmentTeamName" />
+        <result column="appointment_phone_number" property="appointmentPhoneNumber" />
+        <result column="number_of_persons" property="numberOfPersons" />
+        <result column="venue_id" property="venueId" />
+        <result column="venue_name" property="venueName" />
+        <result column="venue_school" property="venueSchool" />
+        <result column="venue_address" property="venueAddress" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="effective_state" property="effectiveState" />
+        <result column="audit_status" property="auditStatus" />
+        <result column="audit_user_id" property="auditUserId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+        <result column="reserve1" property="reserve1" />
+        <result column="reserve2" property="reserve2" />
+        <result column="reserve3" property="reserve3" />
+        <result column="reserve4" property="reserve4" />
+        <result column="reserve5" property="reserve5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, appointment_user_name, appointment_team_name, appointment_phone_number, number_of_persons, venue_id, venue_name, venue_school, venue_address, start_time, end_time, effective_state, audit_status, audit_user_id, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5
+    </sql>
+
+</mapper>

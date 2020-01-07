@@ -85,7 +85,7 @@ public class ${table.controllerName} {
     <#if restControllerStyle>
     <#else>@ResponseBody
     </#if>
-    private Msg delete${entity}(@RequestParam(value = "id",defaultValue = "no")String id){
+    private Msg delete${entity}(@RequestParam(value = "id",defaultValue = "no")<#list table.fields as field><#if field.keyFlag><#-- 主键 -->${field.propertyType} ${field.propertyName}</#if></#list>){
         boolean state=baseService.removeById(id);
         if (state){
             return Msg.SUCCESS();
@@ -146,7 +146,7 @@ public class ${table.controllerName} {
     <#if restControllerStyle>
     <#else>@ResponseBody
     </#if>
-    private Msg select${entity}ById(@RequestParam(value = "id",defaultValue = "no")String id){
+    private Msg select${entity}ById(@RequestParam(value = "id",defaultValue = "no")<#list table.fields as field><#if field.keyFlag><#-- 主键 -->${field.propertyType} ${field.propertyName}</#if></#list>){
     ${entity} state=baseService.getById(id);
         if (state!=null){
             return Msg.SUCCESS().add("result",state);
