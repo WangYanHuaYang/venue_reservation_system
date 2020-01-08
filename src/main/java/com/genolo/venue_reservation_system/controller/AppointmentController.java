@@ -46,6 +46,7 @@ public class AppointmentController {
     @RequestMapping(value = "/saveAppointment", method = RequestMethod.PUT)
     private Msg saveAppointment(@RequestBody Appointment appointment) {
         appointment.setCreateTime(LocalDateTime.now());
+        appointment.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(appointment);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +100,9 @@ public class AppointmentController {
     @RequestMapping(value = "/selectAppointments", method = RequestMethod.POST)
     private Msg selectAppointments(@RequestBody Appointment appointment, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Appointment> page = new Page<Appointment>(pageNum, pageSize);
-        IPage<Appointment> state = baseService.page(page, new QueryWrapper<Appointment>().setEntity(appointment));
+        QueryWrapper<Appointment> wrapper=new QueryWrapper<Appointment>().setEntity(appointment);
+        wrapper.orderBy(true,false,"update_time,create_time");
+        IPage<Appointment> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

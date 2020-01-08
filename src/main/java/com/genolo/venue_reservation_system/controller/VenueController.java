@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.Venue;
 import com.genolo.venue_reservation_system.service.VenueService;
 import io.swagger.annotations.Api;
@@ -46,9 +47,10 @@ public class VenueController {
     @RequestMapping(value = "/saveVenue", method = RequestMethod.PUT)
     private Msg saveVenue(@RequestBody Venue venue) {
         venue.setCreateTime(LocalDateTime.now());
+        venue.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(venue);
         if (state) {
-            return Msg.SUCCESS();
+            return Msg.SUCCESS().add("venueId",venue.getId());
         } else {
             return Msg.FAIL();
         }
@@ -99,7 +101,9 @@ public class VenueController {
     @RequestMapping(value = "/selectVenues", method = RequestMethod.POST)
     private Msg selectVenues(@RequestBody Venue venue, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Venue> page = new Page<Venue>(pageNum, pageSize);
-        IPage<Venue> state = baseService.page(page, new QueryWrapper<Venue>().setEntity(venue));
+        QueryWrapper<Venue> wrapper = new QueryWrapper<Venue>().setEntity(venue);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<Venue> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

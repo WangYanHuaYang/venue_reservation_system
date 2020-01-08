@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.Dictionaries;
 import com.genolo.venue_reservation_system.service.DictionariesService;
 import io.swagger.annotations.Api;
@@ -46,6 +47,7 @@ public class DictionariesController {
     @RequestMapping(value = "/saveDictionaries", method = RequestMethod.PUT)
     private Msg saveDictionaries(@RequestBody Dictionaries dictionaries) {
         dictionaries.setCreateTime(LocalDateTime.now());
+        dictionaries.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(dictionaries);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +101,9 @@ public class DictionariesController {
     @RequestMapping(value = "/selectDictionariess", method = RequestMethod.POST)
     private Msg selectDictionariess(@RequestBody Dictionaries dictionaries, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Dictionaries> page = new Page<Dictionaries>(pageNum, pageSize);
-        IPage<Dictionaries> state = baseService.page(page, new QueryWrapper<Dictionaries>().setEntity(dictionaries));
+        QueryWrapper<Dictionaries> wrapper = new QueryWrapper<Dictionaries>().setEntity(dictionaries);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<Dictionaries> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

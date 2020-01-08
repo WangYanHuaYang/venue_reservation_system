@@ -1,13 +1,16 @@
 package com.genolo.venue_reservation_system.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,6 +28,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName(autoResultMap = true)
 @ExcelTarget("venue")
 @ApiModel(value="Venue对象", description="场馆表")
 public class Venue extends Model<Venue> {
@@ -37,6 +41,7 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "场馆名称")
     @Excel(name = "场馆名称")
+    @TableField(condition = SqlCondition.LIKE)
     private String venueName;
 
     @ApiModelProperty(value = "省")
@@ -73,11 +78,13 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "所属学校")
     @Excel(name = "所属学校")
+    @TableField(condition = SqlCondition.LIKE)
     private String schoolName;
 
     @ApiModelProperty(value = "场馆项目")
     @Excel(name = "场馆项目")
-    private String venueProject;
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<String> venueProject;
 
     @ApiModelProperty(value = "适宜人群")
     @Excel(name = "适宜人群")
@@ -85,10 +92,12 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "开馆时间")
     @Excel(name = "开馆时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime openTime;
 
     @ApiModelProperty(value = "闭馆时间")
     @Excel(name = "闭馆时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime closeTime;
 
     @ApiModelProperty(value = "备注")
@@ -97,10 +106,12 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "午休开始时间")
     @Excel(name = "午休开始时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime lunchStartTime;
 
     @ApiModelProperty(value = "午休结束时间")
     @Excel(name = "午休结束时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime lunchEndTime;
 
     @ApiModelProperty(value = "单次时间段 单位：小时")
@@ -125,10 +136,12 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "创建时间")
     @Excel(name = "创建时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新时间")
     @Excel(name = "更新时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "删除状态 0_删除 1_未删除")

@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.MessageCenter;
 import com.genolo.venue_reservation_system.service.MessageCenterService;
 import io.swagger.annotations.Api;
@@ -46,6 +47,7 @@ public class MessageCenterController {
     @RequestMapping(value = "/saveMessageCenter", method = RequestMethod.PUT)
     private Msg saveMessageCenter(@RequestBody MessageCenter message_center) {
         message_center.setCreateTime(LocalDateTime.now());
+        message_center.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(message_center);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +101,9 @@ public class MessageCenterController {
     @RequestMapping(value = "/selectMessageCenters", method = RequestMethod.POST)
     private Msg selectMessageCenters(@RequestBody MessageCenter message_center, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<MessageCenter> page = new Page<MessageCenter>(pageNum, pageSize);
-        IPage<MessageCenter> state = baseService.page(page, new QueryWrapper<MessageCenter>().setEntity(message_center));
+        QueryWrapper<MessageCenter> wrapper = new QueryWrapper<MessageCenter>().setEntity(message_center);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<MessageCenter> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

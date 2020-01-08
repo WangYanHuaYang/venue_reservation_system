@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.SysPermission;
 import com.genolo.venue_reservation_system.service.SysPermissionService;
 import io.swagger.annotations.Api;
@@ -46,6 +47,7 @@ public class SysPermissionController {
     @RequestMapping(value = "/saveSysPermission", method = RequestMethod.PUT)
     private Msg saveSysPermission(@RequestBody SysPermission sys_permission) {
         sys_permission.setCreateTime(LocalDateTime.now());
+        sys_permission.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(sys_permission);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +101,9 @@ public class SysPermissionController {
     @RequestMapping(value = "/selectSysPermissions", method = RequestMethod.POST)
     private Msg selectSysPermissions(@RequestBody SysPermission sys_permission, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysPermission> page = new Page<SysPermission>(pageNum, pageSize);
-        IPage<SysPermission> state = baseService.page(page, new QueryWrapper<SysPermission>().setEntity(sys_permission));
+        QueryWrapper<SysPermission> wrapper = new QueryWrapper<SysPermission>().setEntity(sys_permission);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<SysPermission> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

@@ -1,11 +1,14 @@
 package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
+import com.genolo.venue_reservation_system.Util.FileUtils;
 import com.genolo.venue_reservation_system.Util.Msg;
 import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.service.AttachmentService;
+import com.genolo.venue_reservation_system.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -36,6 +41,9 @@ public class AttachmentController {
     @Autowired
     AttachmentService baseService;
 
+    @Value("${current-project.file-prefix-path}")
+    private String filePrefixPath;
+
     /**
      * @Description: 新增  附件表
      * @Param: [attachment]
@@ -44,13 +52,26 @@ public class AttachmentController {
      */
     @ApiOperation("新增 Attachment")
     @RequestMapping(value = "/saveAttachment", method = RequestMethod.PUT)
-    private Msg saveAttachment(@RequestBody Attachment attachment,@RequestParam(value = "file")MultipartFile file) {
-        attachment.setCreateTime(LocalDateTime.now());
-        boolean state = baseService.save(attachment);
-        if (state) {
-            return Msg.SUCCESS();
-        } else {
-            return Msg.FAIL();
+    private Msg saveAttachment(Attachment attachment,
+                               @NotBlank(message = "场馆名不能为空") @RequestParam(value = "venueName") String venueName,
+                               @NotBlank(message = "文件名不能为空") @RequestParam(value = "fileName") String fileName,
+                               @NotBlank(message = "所属学校名不能为空") @RequestParam(value = "schoolName") String schoolName,
+                               @RequestParam(value = "file") MultipartFile file) {
+        Attachment state = null;
+        StringBuilder fileVisitPath = new StringBuilder();
+        try {
+            state = baseService.save(file, attachment, venueName, schoolName, fileName);
+            fileVisitPath.append(filePrefixPath);
+            fileVisitPath.append(state.getAttachmentUrl());
+            state.setAttachmentUrl(fileVisitPath.toString());
+            if (state != null) {
+                return Msg.SUCCESS().add("file", state);
+            } else {
+                return Msg.FAIL();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Msg.CUSTOM_MSG(500, e.getMessage());
         }
     }
 
@@ -99,7 +120,9 @@ public class AttachmentController {
     @RequestMapping(value = "/selectAttachments", method = RequestMethod.POST)
     private Msg selectAttachments(@RequestBody Attachment attachment, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Attachment> page = new Page<Attachment>(pageNum, pageSize);
-        IPage<Attachment> state = baseService.page(page, new QueryWrapper<Attachment>().setEntity(attachment));
+        QueryWrapper<Attachment> wrapper = new QueryWrapper<Attachment>().setEntity(attachment);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<Attachment> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

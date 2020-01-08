@@ -11,7 +11,7 @@
         <result column="phone_number" property="phoneNumber" />
         <result column="e_mail" property="eMail" />
         <result column="organization" property="organization" />
-        <result column="roles" property="roles"  jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler" />
+        <result column="roles" property="roles" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler" />
         <result column="user_level" property="userLevel" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />

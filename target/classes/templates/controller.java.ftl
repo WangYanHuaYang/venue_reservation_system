@@ -142,7 +142,7 @@ public class ${table.controllerName} {
      * @Date: 2018/9/30
      */
     @ApiOperation("根据id查询 ${entity}")
-    @RequestMapping(value = "/select${entity}ById",method = RequestMethod.POST)
+    @RequestMapping(value = "/select${entity}ById",method = RequestMethod.GET)
     <#if restControllerStyle>
     <#else>@ResponseBody
     </#if>
@@ -182,7 +182,7 @@ public class ${table.controllerName} {
      * @Date: 2018/9/30
      */
     @ApiOperation("导出 ${entity}")
-    @RequestMapping(value = "/export${entity}",method = RequestMethod.POST)
+    @RequestMapping(value = "/export${entity}",method = RequestMethod.GET)
     <#if restControllerStyle>
     <#else>@ResponseBody
     </#if>

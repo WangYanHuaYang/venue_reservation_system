@@ -16,10 +16,13 @@ spring:
     password: CVIT2017A412DB!@
     driver-class-name: com.mysql.jdbc.Driver
   thymeleaf:
-    encoding: utf-8
     cache: false
     servlet:
       content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: utf-8
   #  profiles:
   #    active: @profileActive@
   mvc:
@@ -54,4 +57,11 @@ mybatis-plus:
     db-config:
       db-type: mysql
       id-type: id_worker
+
+# 文件地址
+files:
+  path: ${file-path:d:/venue_reservation_system}
+
+current-project:
+  file-prefix-path: http://10.44.15.17:8181/static
 

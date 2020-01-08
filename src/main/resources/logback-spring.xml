@@ -7,7 +7,7 @@
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
 
-    <property name="log.path" value="D:/smart_meeting_room_log" />
+    <property name="log.path" value="D:/venue_reservation_system_log" />
     <!--输出到控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -47,13 +47,13 @@
 
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
     <springProfile name="test,dev">
-        <logger name="com.genolo.smart_meeting_room.dao" level="DEBUG" additivity="false">
+        <logger name="com.genolo.venue_reservation_system.dao" level="DEBUG" additivity="false">
             <appender-ref ref="console" />
         </logger>
     </springProfile>
     <!-- 生产环境. -->
     <springProfile name="prod">
-        <logger name="com.genolo.smart_meeting_room.dao" level="info" additivity="false">
+        <logger name="com.genolo.venue_reservation_system.dao" level="info" additivity="false">
             <appender-ref ref="console" />
         </logger>
     </springProfile>

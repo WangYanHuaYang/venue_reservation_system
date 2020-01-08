@@ -22,7 +22,7 @@ public class Msg {
 
 	public static Msg SUCCESS(){
 		Msg result=new Msg();
-		result.setCode(200);
+		result.setCode(0);
 		result.setMessage("请求成功");
 		return result;
 	}

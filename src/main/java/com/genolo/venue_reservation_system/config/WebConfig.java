@@ -1,10 +1,14 @@
 package com.genolo.venue_reservation_system.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.File;
 
 /**
  * @program: sbm_demo
@@ -14,6 +18,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    /**
+     * 上传文件根路径
+     */
+    @Value("${files.path}")
+    private String filesPath;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -27,11 +37,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
-    }
-
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("swagger-ui");
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + filesPath + File.separator);
     }
 
 }

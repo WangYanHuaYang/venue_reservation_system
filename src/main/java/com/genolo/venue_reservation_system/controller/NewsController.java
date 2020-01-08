@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.News;
 import com.genolo.venue_reservation_system.service.NewsService;
 import io.swagger.annotations.Api;
@@ -46,6 +47,7 @@ public class NewsController {
     @RequestMapping(value = "/saveNews", method = RequestMethod.PUT)
     private Msg saveNews(@RequestBody News news) {
         news.setCreateTime(LocalDateTime.now());
+        news.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(news);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +101,9 @@ public class NewsController {
     @RequestMapping(value = "/selectNewss", method = RequestMethod.POST)
     private Msg selectNewss(@RequestBody News news, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<News> page = new Page<News>(pageNum, pageSize);
-        IPage<News> state = baseService.page(page, new QueryWrapper<News>().setEntity(news));
+        QueryWrapper<News> wrapper = new QueryWrapper<News>().setEntity(news);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<News> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

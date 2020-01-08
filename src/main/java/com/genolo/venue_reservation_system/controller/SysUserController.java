@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.LoginBean;
 import com.genolo.venue_reservation_system.model.SysUser;
 import com.genolo.venue_reservation_system.service.SysUserService;
@@ -49,6 +50,7 @@ public class SysUserController {
     @RequestMapping(value = "/saveSysUser", method = RequestMethod.PUT)
     private Msg saveSysUser(@RequestBody SysUser sys_user) {
         sys_user.setCreateTime(LocalDateTime.now());
+        sys_user.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(sys_user);
         if (state) {
             return Msg.SUCCESS().add("InvitationCode",sys_user.getId());
@@ -102,7 +104,9 @@ public class SysUserController {
     @RequestMapping(value = "/selectSysUsers", method = RequestMethod.POST)
     private Msg selectSysUsers(@RequestBody SysUser sys_user, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysUser> page = new Page<SysUser>(pageNum, pageSize);
-        IPage<SysUser> state = baseService.page(page, new QueryWrapper<SysUser>().setEntity(sys_user));
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>().setEntity(sys_user);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<SysUser> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

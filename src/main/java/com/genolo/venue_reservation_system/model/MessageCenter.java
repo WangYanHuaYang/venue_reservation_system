@@ -1,12 +1,12 @@
 package com.genolo.venue_reservation_system.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -24,6 +24,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName(autoResultMap = true)
 @ExcelTarget("message_center")
 @ApiModel(value="MessageCenter对象", description=" 消息中心表")
 public class MessageCenter extends Model<MessageCenter> {
@@ -36,6 +37,7 @@ public class MessageCenter extends Model<MessageCenter> {
 
     @ApiModelProperty(value = "消息体")
     @Excel(name = "消息体")
+    @TableField(condition = SqlCondition.LIKE)
     private String messageContent;
 
     @ApiModelProperty(value = "发送人id")
@@ -44,10 +46,12 @@ public class MessageCenter extends Model<MessageCenter> {
 
     @ApiModelProperty(value = "发送人姓名")
     @Excel(name = "发送人姓名")
+    @TableField(condition = SqlCondition.LIKE)
     private String sendUserName;
 
     @ApiModelProperty(value = "发送时间")
     @Excel(name = "发送时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime sendTime;
 
     @ApiModelProperty(value = "发送状态 0_未发送 1_已发送")
@@ -64,6 +68,7 @@ public class MessageCenter extends Model<MessageCenter> {
 
     @ApiModelProperty(value = "接收人姓名")
     @Excel(name = "接收人姓名")
+    @TableField(condition = SqlCondition.LIKE)
     private String receiveUserName;
 
     @ApiModelProperty(value = "接收人电话")
@@ -76,10 +81,12 @@ public class MessageCenter extends Model<MessageCenter> {
 
     @ApiModelProperty(value = "创建时间")
     @Excel(name = "创建时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新时间")
     @Excel(name = "更新时间")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "删除状态 0_删除 1_未删除")

@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
+import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.SysRole;
 import com.genolo.venue_reservation_system.service.SysRoleService;
 import io.swagger.annotations.Api;
@@ -46,6 +47,7 @@ public class SysRoleController {
     @RequestMapping(value = "/saveSysRole", method = RequestMethod.PUT)
     private Msg saveSysRole(@RequestBody SysRole sys_role) {
         sys_role.setCreateTime(LocalDateTime.now());
+        sys_role.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(sys_role);
         if (state) {
             return Msg.SUCCESS();
@@ -99,7 +101,9 @@ public class SysRoleController {
     @RequestMapping(value = "/selectSysRoles", method = RequestMethod.POST)
     private Msg selectSysRoles(@RequestBody SysRole sys_role, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysRole> page = new Page<SysRole>(pageNum, pageSize);
-        IPage<SysRole> state = baseService.page(page, new QueryWrapper<SysRole>().setEntity(sys_role));
+        QueryWrapper<SysRole> wrapper = new QueryWrapper<SysRole>().setEntity(sys_role);
+        wrapper.orderBy(true, false, "update_time,create_time");
+        IPage<SysRole> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {
