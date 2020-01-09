@@ -121,7 +121,7 @@ public class AttachmentController {
     private Msg selectAttachments(@RequestBody Attachment attachment, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Attachment> page = new Page<Attachment>(pageNum, pageSize);
         QueryWrapper<Attachment> wrapper = new QueryWrapper<Attachment>().setEntity(attachment);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<Attachment> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

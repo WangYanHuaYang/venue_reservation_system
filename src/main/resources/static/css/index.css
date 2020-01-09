@@ -1,0 +1,26 @@
+.layui-tab-item {
+    height: 100%;
+}
+
+.layui-tab {
+    position: relative;
+    margin: 8px 8px 8px 208px;
+    height: calc(100vh - 76px);
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.layui-tab-title {
+    padding-right: 30px;
+    width: calc(100% - 30px);
+    position: absolute;
+    background-color: #fff;
+}
+
+.layui-tab-content {
+    height: calc(100% - 61px);
+    margin-top: 41px;
+}
+.layui-tab-title .layui-this{
+	background-color: #D6EBDE;
+}

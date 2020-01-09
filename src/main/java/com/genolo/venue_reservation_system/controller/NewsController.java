@@ -102,7 +102,7 @@ public class NewsController {
     private Msg selectNewss(@RequestBody News news, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<News> page = new Page<News>(pageNum, pageSize);
         QueryWrapper<News> wrapper = new QueryWrapper<News>().setEntity(news);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<News> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

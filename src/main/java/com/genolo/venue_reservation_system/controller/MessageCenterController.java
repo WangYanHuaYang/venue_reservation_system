@@ -102,7 +102,7 @@ public class MessageCenterController {
     private Msg selectMessageCenters(@RequestBody MessageCenter message_center, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<MessageCenter> page = new Page<MessageCenter>(pageNum, pageSize);
         QueryWrapper<MessageCenter> wrapper = new QueryWrapper<MessageCenter>().setEntity(message_center);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<MessageCenter> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

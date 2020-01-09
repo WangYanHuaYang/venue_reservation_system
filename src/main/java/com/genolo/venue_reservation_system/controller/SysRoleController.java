@@ -102,7 +102,7 @@ public class SysRoleController {
     private Msg selectSysRoles(@RequestBody SysRole sys_role, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysRole> page = new Page<SysRole>(pageNum, pageSize);
         QueryWrapper<SysRole> wrapper = new QueryWrapper<SysRole>().setEntity(sys_role);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<SysRole> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

@@ -101,7 +101,7 @@ public class AppointmentController {
     private Msg selectAppointments(@RequestBody Appointment appointment, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Appointment> page = new Page<Appointment>(pageNum, pageSize);
         QueryWrapper<Appointment> wrapper=new QueryWrapper<Appointment>().setEntity(appointment);
-        wrapper.orderBy(true,false,"update_time,create_time");
+        wrapper.orderBy(true,false,"update_time");
         IPage<Appointment> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

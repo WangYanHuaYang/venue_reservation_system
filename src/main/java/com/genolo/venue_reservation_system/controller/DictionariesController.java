@@ -102,7 +102,7 @@ public class DictionariesController {
     private Msg selectDictionariess(@RequestBody Dictionaries dictionaries, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Dictionaries> page = new Page<Dictionaries>(pageNum, pageSize);
         QueryWrapper<Dictionaries> wrapper = new QueryWrapper<Dictionaries>().setEntity(dictionaries);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<Dictionaries> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

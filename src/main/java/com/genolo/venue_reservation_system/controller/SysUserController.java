@@ -105,7 +105,7 @@ public class SysUserController {
     private Msg selectSysUsers(@RequestBody SysUser sys_user, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysUser> page = new Page<SysUser>(pageNum, pageSize);
         QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>().setEntity(sys_user);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<SysUser> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

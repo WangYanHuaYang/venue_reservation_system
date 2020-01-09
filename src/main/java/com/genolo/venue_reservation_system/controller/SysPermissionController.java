@@ -102,7 +102,7 @@ public class SysPermissionController {
     private Msg selectSysPermissions(@RequestBody SysPermission sys_permission, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysPermission> page = new Page<SysPermission>(pageNum, pageSize);
         QueryWrapper<SysPermission> wrapper = new QueryWrapper<SysPermission>().setEntity(sys_permission);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<SysPermission> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

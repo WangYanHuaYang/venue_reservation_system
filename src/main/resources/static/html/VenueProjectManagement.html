@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+<!--		作者：805467892@qq.com-->
+<!--		时间：2020-01-08-->
+<!--		描述：基础css js 引用-->
+		<link rel="stylesheet" type="text/css" href="../plugins/layui/css/modules/laydate/default/laydate.css" />
+		<link rel="stylesheet" type="text/css" href="../plugins/layui/css/modules/layer/default/layer.css" />
+		<link rel="stylesheet" type="text/css" href="../plugins/layui/css/layui.css" media="all"/>
+		<link rel="stylesheet" type="text/css" href="../css/venueProjectManagement.css" />
+		<script type="text/javascript" src="../plugins/jquery.min.js" charset="utf-8" ></script>
+		<script type="text/javascript" src="../plugins/layui/layui.js" charset="utf-8" ></script>
+		<script src="../plugins/layui/lay/modules/layer.js" type="text/javascript" charset="utf-8" ></script>
+		<script src="../plugins/layui/lay/modules/laypage.js" type="text/javascript" charset="utf-8" ></script>
+		<script src="../js/utils.js" type="text/javascript" charset="utf-8" ></script>
+<!--		作者：805467892@qq.com-->
+<!--		时间：2020-01-08-->
+<!--		描述：需要修改自己的js文件路径-->
+		<script src="../js/venueProjectManagement.js" type="text/javascript" charset="utf-8" ></script>
+
+	</head>
+
+	<body>
+		<table class="layui-hide" id="test" lay-filter="test"></table>
+		<div id="pageList"></div>
+		<script type="text/html" id="toolbarDemo">
+
+			<div class="layui-btn-container top-add-edit-delete-Btn">
+				<button data-method="addProject" class="layui-btn layui-btn-sm top-add-edit-delete-Btn" lay-event="addData">新增</button>
+
+				 <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">删除</button>
+	-->
+			</div>
+			<div class="layui-form-item top-search-EditTextView">
+				<label class="layui-form-label">项目名称:</label>
+				<div class="layui-input-inline">
+					<input type="text" name="username" lay-verify="required" id="searchEditText" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-btn-container top-add-edit-delete-Btn">
+				<button data-method="searchProject" class="layui-btn layui-btn-sm top-add-edit-delete-Btn"  lay-event="searchData">搜索</button>
+			</div>
+		</script>
+
+		<script type="text/html" id="barDemo">
+			<a  data-method="editProject" class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+	</body>
+	<!--
+        	作者：805467892@qq.com
+        	时间：2020-01-08
+        	描述：弹出DOM层
+        -->
+	<div id="dom_AddProject" hidden="hidden">
+		<div class="layui-form-item top-search-EditTextView">
+			<label class="layui-form-label">项目类别:</label>
+			<div class="layui-input-inline">
+				<input type="text" name="username" lay-verify="required" disabled="value"  placeholder="场馆项目类别" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item top-search-EditTextView">
+			<label class="layui-form-label">项目名称:</label>
+			<div class="layui-input-inline">
+				<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" id="proectName">
+			</div>
+		</div>
+	</div>
+</html>

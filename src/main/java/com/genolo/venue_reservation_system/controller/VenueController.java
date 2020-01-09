@@ -102,7 +102,7 @@ public class VenueController {
     private Msg selectVenues(@RequestBody Venue venue, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<Venue> page = new Page<Venue>(pageNum, pageSize);
         QueryWrapper<Venue> wrapper = new QueryWrapper<Venue>().setEntity(venue);
-        wrapper.orderBy(true, false, "update_time,create_time");
+        wrapper.orderBy(true, false, "update_time");
         IPage<Venue> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);

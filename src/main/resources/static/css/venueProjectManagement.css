@@ -1,0 +1,28 @@
+/*index页面样式*/
+
+.top-div {
+	width: 100%;
+	padding: 0.625rem;
+}
+
+.top-add-edit-delete-Btn {
+	float: left;
+	
+}
+.layui-table-tool-temp .layui-form-label{
+	width: 90px;
+	height: 30px;
+	padding: 5px 15px;
+}
+.layui-table-tool-temp .top-search-EditTextView {
+	width: 25rem;
+	float: left;
+	clear: none;
+	margin-right: 0.625rem;
+	margin-bottom: 0;
+}
+.top-search-EditTextView .layui-input{
+	height: 30px;
+}
+
+/*addProject页面样式*/
