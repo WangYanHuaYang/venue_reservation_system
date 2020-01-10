@@ -13,6 +13,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * <p>
  * 字典表
@@ -42,6 +44,7 @@ public class Dictionaries extends Model<Dictionaries> {
     @ApiModelProperty(value = "字典名称")
     @Excel(name = "字典名称")
     @TableField(condition = SqlCondition.LIKE)
+    @NotBlank(message = "名称不能为空")
     private String dictionariesName;
 
     @ApiModelProperty(value = "创建时间")

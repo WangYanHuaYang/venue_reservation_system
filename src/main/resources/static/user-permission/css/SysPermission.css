@@ -1,0 +1,541 @@
+* {
+    /* font: 13px/1.5 '微软雅黑', Verdana, Helvetica, Arial, sans-serif; */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    background: #f2f3f5;
+}
+
+img {
+    max-width: 100%;
+}
+
+.usecontain {
+    float: left;
+    width: 100%;
+    padding: 30px;
+    border: 30px #f2f3f5 solid;
+    background: #fff;
+}
+
+.top-form-user {
+    margin-bottom: 15px;
+    width: 18%;
+    float: left;
+}
+.top-form-common {
+    margin-bottom: 15px;
+    width: 25%;
+    float: left;
+}
+
+.layui-form-label {
+    padding: 9px 0px;
+    width: 115px;
+}
+
+.layui-input-block {
+    margin-left: 120px;
+}
+
+.top-form-tele{
+    margin-bottom: 15px;
+    width: 18%;
+    float: left;
+}
+.top-form-tele .layui-form-label {
+    padding: 9px 0px;
+    width: 100px;
+}
+
+.top-form-tele .layui-input-block {
+    margin-left: 110px;
+}
+
+
+.top-form-select .layui-input-inline {
+    width: 170px;
+}
+
+.top-form-select {
+    margin-bottom: 15px;
+    width: 23%;
+    float: left;
+}
+
+.topbutton {
+    float: left;
+    text-align: center;
+    display: inline-block;
+}
+
+.topbutton .layui-btn-sm {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.layui-table thead tr {
+    background: #009688;
+    color: #fff;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.layui-table td,
+.layui-table th {
+    text-align: center;
+    padding:0px 15px;
+    min-height: 20px;
+    line-height: 20px;
+    height: 45px;
+    line-height: 45px;
+}
+.xiugai,.dele {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 5px;
+    background-color: #009688;
+    white-space: nowrap;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #fff;
+}
+.xiugai,.dele:hover {
+    color: #fff;
+    background-color: #00a496;
+}
+.dele{
+    background-color: #FF5722;
+}
+.dele:hover{
+    background-color: #ff5d21;
+}
+.page{text-align: right}
+.layui-form{margin-top: 15px; float: left; width: 100%;}
+
+/* layui弹出层 */
+.zhezhao{
+    width: 90%;
+    float: left;
+}
+.layui-form-select dl dd.layui-this {
+    background-color: #009688;
+}
+.layui-form-item .layui-form-item .layui-input-inline {
+    float: left;
+    width: auto;
+}
+
+/* bootstrap弹出层 */
+.add{ width: 100%; position: absolute;  top: 30%; left: 50%; margin-left: -300px; margin-top: -250px; width: 600px; min-height: 500px;float: left;}
+button.close span{
+    font-size: 30px;
+    color: #000;
+    opacity: 1;
+}
+.close {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.form-control {
+    height: 32px;
+    padding: 10px 12px;
+    font-size: 13px;
+}
+.hidden{display: none;}
+.modal-open .modal {
+    overflow-x: visible;
+    overflow-y: visible;
+}
+.modal-body {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    float: left;
+}
+.modal-footer {
+    width: 100%;
+    float: left;
+}
+
+.modal.in .modal-dialog {
+    width: 100%;
+    float: left;
+   background: #fff;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: none;
+    border-radius: 0px;
+    box-shadow:none;
+    background-clip: padding-box;
+    outline: 0;
+}
+h4{
+    color: #2f332a;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+    padding-bottom: 0px;
+    font-size: 24px;
+    color: #2f332a;
+    font-weight: bold;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.btn-warning:hover {
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #d58512;
+}
+
+/* bootstrap样式弹出层 */
+.yangshi {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -450px;
+    margin-top: -240px;
+    width: 900px;
+    min-height: 480px;
+    float: left;
+}
+
+.demo-carousel {
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+
+
+/* bootstrap弹出层 */
+.add {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -300px;
+    width: 600px;
+    height: 640px;
+    float: left;
+}
+
+.delete {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+    width: 400px;
+    min-height: 300px;
+    float: left;
+
+}
+
+.deletecontain {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #ff0000;
+}
+
+button.close span {
+    font-size: 30px;
+    color: #000;
+    opacity: 1;
+}
+
+.close {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.form-control {
+    height: 32px;
+    padding: 10px 12px;
+    font-size: 13px;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-open .modal {
+    overflow-x: visible;
+    overflow-y: visible;
+}
+
+.modal-body {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    float: left;
+}
+
+.modal-footer {
+    width: 100%;
+    float: left;
+}
+
+.modal.in .modal-dialog {
+    width: 100%;
+    float: left;
+    background: #fff;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    background-clip: padding-box;
+    outline: 0;
+}
+
+h4 {
+    color: #2f332a;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+    padding-bottom: 0px;
+    font-size: 24px;
+    color: #2f332a;
+    font-weight: bold;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-warning:hover {
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #d58512;
+}
+
+.zhuangtai .form-control {
+    height: auto;
+    padding: 10px 12px;
+    font-size: 13px;
+}
+
+.zhuangtai {
+    margin-top: 15px;
+}
+/* ruler */
+div.ruler {height:20px; width:220px; background-color:#f0f6e4;border: 1px solid #333; margin-bottom: 5px; cursor: pointer}
+div.ruler div.cursor {height:20px; width:30px; background-color:#3C6E31; color:white; text-align: right; padding-right: 5px; cursor: pointer}
+
+/* 表格 */
+.table-striped>tbody>tr.tabletop {
+    background: #009688;
+    color: #fff;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+}
+.table-bordered>tbody>tr>th {
+    text-align: center;
+    padding: 0px 15px;
+    min-height: 20px;
+    line-height: 20px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+}
+.table.treetable tbody tr td {
+    text-align: center;
+    padding: 0px 15px;
+    min-height: 20px;
+    line-height: 20px;
+    height: 45px;
+    line-height: 45px;
+}
+
+.yangshileft{
+    float: left;
+    width: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+.yangshiright{
+    float: left;
+    width: 30%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.yangshileft select.input-sm {
+    height: 40px;
+    line-height: 40px;
+    background: #f0f3fa;
+}
+
+.yangshiright .form-control {
+    height: 40px;
+    padding: 10px 12px;
+    font-size: 13px;
+    background: #f0f3fa;
+}
+.wenben{float: left; color: #627297; font-size: 16px; width: 100%; height: 30px; line-height: 30px;}
+.kuangkuang{float: left; width: 100%; font-size: 16px;}
+
+.layui-table>tbody>tr>td:first-child{display: none;}
+.layui-table>thead>tr>th:first-child{display: none;}
+
+/* 2019-10-24 修改- 修改人：张鹤 */
+.fixed-table-container thead>tr {
+    background: #009688;
+    color: #fff;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+}
+.fixed-table-container thead>tr>th{
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.fixed-table-container tbody>tr>td{
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.fixed-table-container .label-primary {
+    background-color: #3276b1;
+    padding: 5px 20px;
+}
+
+
+@media (max-width: 1700px) and (min-width: 1500px) {
+
+    /* 适配1600×900 */
+}
+
+@media (max-width: 1499px) and (min-width: 1400px) {
+
+    /* 适配1440×900 */
+}
+
+@media (max-width: 1399px) and (min-width: 1300px) {
+
+    /* 适配1366×768 */
+    .usecontain {
+        padding: 30px;
+    }
+
+}
+
+@media (max-width: 1299px) and (min-width: 1200px) {
+
+    /* 适配1280×800,1280×1024 */
+    .usecontain {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 1000px) {
+
+    /* 适配1024×768 */
+    .usecontain {
+        padding: 30px;
+    }
+    .layui-form-label {
+        width: 90px;
+    }
+    .layui-input-block {
+        margin-left: 100px;
+    }
+    .top-form-tele .layui-form-label {
+        width: 70px;
+    }
+    .top-form-tele .layui-input-block {
+        margin-left: 80px;
+    }
+    .top-form-select .layui-input-inline {
+        width: 130px;
+    }
+}
+
+@media (max-width: 999px) and (min-width: 600px) {
+    /* 框架内部，整体1024 */
+
+    .usecontain {
+        padding: 30px;
+    }
+    /* 弹出框 */
+    .yangshi {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -350px;
+        margin-top: -235px;
+        width: 700px;
+        min-height: 470px;
+        height: 540px;
+        float: left;
+    }
+
+    .modal-dialog {
+        margin: 0px;
+    }
+    .yangshileft {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .yangshiright {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .wenben {
+        font-size: 14px;
+        height: 20px;
+        line-height: 20px;
+    }
+    .add .modal-body {
+        float: left;
+        height: 380px;
+        overflow: auto;
+    }
+
+
+}
+table{
+    table-layout: fixed;
+}
+#add-permission{
+    padding-right: 50px;
+}

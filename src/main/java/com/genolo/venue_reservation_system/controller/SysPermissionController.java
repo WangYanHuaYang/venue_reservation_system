@@ -112,6 +112,19 @@ public class SysPermissionController {
     }
 
     /**
+     * @Description: 查询 SysPermission
+     * @Param: [sys_permission]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("查询 SysPermission树")
+    @RequestMapping(value = "/getSysPermissions", method = RequestMethod.POST)
+    private List<SysPermission> getSysPermissions(@RequestBody SysPermission sys_permission) {
+        List<SysPermission> state = baseService.list(new QueryWrapper<SysPermission>().setEntity(sys_permission).orderByAsc("id"));
+        return state;
+    }
+
+    /**
      * @Description: 根据id查询 SysPermission
      * @Param: [id]
      * @Author: wyhy

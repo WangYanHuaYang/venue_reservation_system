@@ -7,6 +7,7 @@ import com.genolo.venue_reservation_system.model.Dictionaries;
 import com.genolo.venue_reservation_system.service.DictionariesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -45,7 +47,7 @@ public class DictionariesController {
      */
     @ApiOperation("新增 Dictionaries")
     @RequestMapping(value = "/saveDictionaries", method = RequestMethod.PUT)
-    private Msg saveDictionaries(@RequestBody Dictionaries dictionaries) {
+    private Msg saveDictionaries(@Valid@RequestBody Dictionaries dictionaries) {
         dictionaries.setCreateTime(LocalDateTime.now());
         dictionaries.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(dictionaries);
@@ -81,7 +83,7 @@ public class DictionariesController {
      */
     @ApiOperation("修改 Dictionaries")
     @RequestMapping(value = "/updateDictionaries", method = RequestMethod.POST)
-    private Msg updateDictionaries(@RequestBody Dictionaries dictionaries) {
+    private Msg updateDictionaries(@Valid@RequestBody Dictionaries dictionaries) {
         dictionaries.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.updateById(dictionaries);
         if (state) {

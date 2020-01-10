@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统权限管理</title>
+    <link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../plugins/treetable/css/global.css">
+    <link rel="stylesheet" href="../plugins/treetable/css/jquery.treetable.css">
+    <link rel="stylesheet" href="../plugins/treetable/css/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="../plugins/treetable/css/jquery.treegrid.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/SysPermission.css">
+</head>
+<body>
+<div class="usecontain">
+    <form class="layui-form maginxiangsu" action="">
+        <div class="refreshbutton" title="刷新页面">
+            <button type="button" class="layui-btn layui-btn" onclick="window.location.reload();">
+                <i aria-hidden="true" class="fa fa-refresh"></i></button>
+        </div>
+        <div class="topbutton" >
+            <button id="addPermission" type="button" class="layui-btn"><i
+                    class="fa fa-plus"></i>添加</button>
+        </div>
+    </form>
+    <div class="layui-form">
+        <table id="deptTreeTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
+    </div>
+</div>
+</body>
+<!-- 弹出选择样式 -->
+<div class="layui-form" id="add-permission" hidden>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上级菜单：</label>
+        <div class="layui-input-block">
+            <select id="parentMenu"></select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称：</label>
+        <div class="layui-input-block">
+            <input class="layui-input" placeholder="名称" type="text" id="permissionName">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型：</label>
+        <div class="layui-input-block">
+            <select lay-verify="">
+                <option value="1">菜单</option>
+                <option value="2">按钮</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接：</label>
+        <div class="layui-input-block">
+            <input class="layui-input" placeholder="链接" type="text" name="name" id="permissionUrl">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">样式：</label>
+        <div class="layui-input-block">
+            <button onclick="selectCss()" class="layui-btn">选择</button>
+            <input type="hidden" name="css" id="css"><i id="cssImg" class="fa"></i>
+        </div>
+    </div>
+</div>
+
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/layui/layui.all.js"></script>
+<script src="../plugins/treetable/js/jquery.treetable.js"></script>
+<script src="../plugins/treetable/js/jquery.treegrid.js"></script>
+<script src="../plugins/treetable/js/jquery.treegrid.extension.js"></script>
+<script src="js/SysPermission.js"></script>
+</html>

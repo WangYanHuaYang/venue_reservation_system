@@ -1854,6 +1854,7 @@
     </column>
     <column id="406" parent="264" name="reserve1">
       <Position>27</Position>
+      <Comment>场馆制度</Comment>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
