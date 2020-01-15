@@ -57,6 +57,8 @@ mybatis-plus:
     db-config:
       db-type: mysql
       id-type: id_worker
+      logic-delete-value: 0 # 逻辑已删除值(默认为 0)
+      logic-not-delete-value: 1 # 逻辑未删除值(默认为 1)
 
 # 文件地址
 files:

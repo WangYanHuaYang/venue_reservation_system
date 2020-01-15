@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/UserManager.css">
+</head>
+<body>
+<div class="layui-fluid">
+<div class="layui-row">
+    <button class="layui-btn" id="add-user">新增</button>
+    <button class="layui-btn" id="add-invitation-code">生成邀请码</button>
+    <form class="layui-form find" id="uername-form" lay-filter="uername-form">
+        <div class="layui-form-item">
+            <div class="layui-input-inline find-input">
+                <input class="layui-input" id="findUserName" name="findUserName" lay-verify="required" placeholder="请输入用户名称查询" type="text">
+            </div>
+            <button type="button" id="find-name" class="layui-btn"><i class="layui-icon layui-icon-search"></i></button>
+        </div>
+    </form>
+</div>
+<div class="layui-row layui-col-space10 context">
+    <div class="layui-col-md2 full">
+        <fieldset class="layui-elem-field full">
+            <legend>用户关系树</legend>
+            <div class="layui-field-box context">
+                <div id="user-tree"></div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="layui-col-md10">
+        <table id="users" lay-filter="users"></table>
+        <div id="pageList"></div>
+    </div>
+</div>
+</div>
+<script type="text/html" id="tool-bar">
+    <button class="layui-btn layui-btn-xs" lay-event="upd">修改</button>
+    <button class="layui-btn layui-btn-xs" lay-event="reset">重置密码</button>
+    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+</script>
+</body>
+<form class="layui-form" id="add-user-form" lay-filter="add-user-form" hidden>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="userName" name="userName" lay-verify="required|username" placeholder="用户名" type="text">
+        </div>
+        <label class="layui-form-label">组织名</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="organization" name="organization" lay-verify="required|username" placeholder="组织名" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系电话</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="phoneNumber" name="phoneNumber" lay-verify="required|phone|number" placeholder="联系电话" type="text">
+        </div>
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="email" name="email" lay-verify="required|email" placeholder="邮箱" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上级用户</label>
+        <div class="layui-input-block">
+            <select id="parentsId" name="parentsId" lay-verify="required"></select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户层级</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="userLevel" name="userLevel" lay-verify="required" value="0" readonly type="text">
+        </div>
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="password" name="password" lay-verify="required|pass" value="888888" readonly type="password">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择角色</label>
+        <div id="roles" class="layui-input-block"></div>
+    </div>
+    <div class="layui-form-item item-bottom">
+        <div class="layui-input-block btn-right">
+            <button id="save" lay-submit lay-filter="save" class="layui-btn layui-btn-sm">保存</button>
+            <button type="button" id="close" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+        </div>
+    </div>
+</form>
+<form class="layui-form" id="inv-user-form" lay-filter="inv-user-form" hidden>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上级用户</label>
+        <div class="layui-input-block">
+            <select id="parentsId2" name="parentsId" lay-verify="required"></select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户层级</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" id="userLevel2" name="userLevel" lay-verify="required" value="0" readonly type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择角色</label>
+        <div id="roles2" class="layui-input-block"></div>
+    </div>
+    <div class="layui-form-item item-bottom">
+        <div class="layui-input-block btn-right">
+            <button lay-submit lay-filter="save2" class="layui-btn layui-btn-sm">生成</button>
+            <button type="button" id="close2" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+        </div>
+    </div>
+</form>
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/layui/layui.all.js"></script>
+<script src="../plugins/Utils.js"></script>
+<script src="js/UserManager.js"></script>
+</html>

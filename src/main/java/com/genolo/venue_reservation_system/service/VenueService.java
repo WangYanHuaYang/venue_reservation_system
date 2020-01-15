@@ -1,5 +1,9 @@
 package com.genolo.venue_reservation_system.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.enums.SqlLike;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.genolo.venue_reservation_system.model.Venue;
 import com.genolo.venue_reservation_system.dao.VenueMapper;
 import org.springframework.stereotype.Service;
@@ -37,4 +41,21 @@ public class VenueService extends BaseService<VenueMapper, Venue> {
         return state;
     }
 
+    @Override
+    public <E extends IPage<Venue>> E page(E page, Wrapper<Venue> queryWrapper) {
+        QueryWrapper<Venue> wrapper=(QueryWrapper<Venue>)queryWrapper;
+        Venue venue=queryWrapper.getEntity();
+        if (venue.getVenueProject()!=null&&venue.getVenueProject().size()>0){
+            List<String> projects=venue.getVenueProject();
+            StringBuilder val=new StringBuilder();
+            for (String project:projects){
+                val.append(project);
+                val.append("%");
+            }
+            venue.setVenueProject(null);
+            wrapper.like("venue_project",val.toString());
+        }
+        E p= super.page(page, wrapper);
+        return p;
+    }
 }

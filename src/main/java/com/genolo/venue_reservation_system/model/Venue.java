@@ -17,6 +17,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * <p>
  * 场馆表
@@ -41,23 +45,28 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "场馆名称")
     @Excel(name = "场馆名称")
+    @NotBlank(message = "场馆名称不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String venueName;
 
     @ApiModelProperty(value = "省")
     @Excel(name = "省")
+    @NotBlank(message = "省不能为空")
     private String province;
 
     @ApiModelProperty(value = "市")
     @Excel(name = "市")
+    @NotBlank(message = "市不能为空")
     private String city;
 
     @ApiModelProperty(value = "区")
     @Excel(name = "区")
+    @NotBlank(message = "区不能为空")
     private String district;
 
     @ApiModelProperty(value = "详细地址")
     @Excel(name = "详细地址")
+    @NotBlank(message = "详细地址不能为空")
     private String address;
 
     @ApiModelProperty(value = "经度")
@@ -70,19 +79,24 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "场馆面积")
     @Excel(name = "场馆面积")
+    @NotNull(message = "场馆面积不能为空")
     private Double area;
 
     @ApiModelProperty(value = "可容纳人数")
     @Excel(name = "可容纳人数")
+    @NotNull(message = "可容纳人数不能为空")
     private Integer numberOfPersons;
 
     @ApiModelProperty(value = "所属学校")
     @Excel(name = "所属学校")
     @TableField(condition = SqlCondition.LIKE)
+    @NotBlank(message = "所属学校不能为空")
     private String schoolName;
 
     @ApiModelProperty(value = "场馆项目")
     @Excel(name = "场馆项目")
+    @NotNull(message = "场馆项目不能为空")
+    @Size(min = 1,message = "至少包含一个项目")
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<String> venueProject;
 
@@ -128,6 +142,7 @@ public class Venue extends Model<Venue> {
 
     @ApiModelProperty(value = "创建人id")
     @Excel(name = "创建人id")
+    @NotBlank(message = "创建人不能为空")
     private String createUserId;
 
     @ApiModelProperty(value = "审核人id")
@@ -148,20 +163,30 @@ public class Venue extends Model<Venue> {
     @Excel(name = "删除状态 0_删除 1_未删除")
     private Integer delState;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "场馆制度")
+    @Excel(name = "场馆制度")
     private String reserve1;
 
-    @Excel(name = "")
-    private String reserve2;
+    @ApiModelProperty(value = "场馆区域划分")
+    @Excel(name = "场馆区域划分")
+    @NotNull(message = "场馆区域不能为空")
+    @Size(min = 1,message = "至少包含一个区域")
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<String> reserve2;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "场馆简介")
+    @Excel(name = "场馆简介")
     private String reserve3;
 
-    @Excel(name = "")
-    private String reserve4;
+    @ApiModelProperty(value = "轮播图")
+    @Excel(name = "轮播图")
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<String> reserve4;
 
-    @Excel(name = "")
-    private String reserve5;
+    @ApiModelProperty(value = "平面图")
+    @Excel(name = "平面图")
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<String> reserve5;
 
 
     @Override

@@ -27,10 +27,21 @@
         <result column="reserve4" property="reserve4" />
         <result column="reserve5" property="reserve5" />
     </resultMap>
+    <resultMap id="countResultMap" type="com.genolo.venue_reservation_system.model.Appointment">
+        <result column="number_of_persons" property="numberOfPersons" />
+        <result column="venue_name" property="venueName" />
+        <result column="venue_school" property="venueSchool" />
+        <result column="venue_address" property="venueAddress" />
+        <result column="start_time" property="startTime" />
+    </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, appointment_user_name, appointment_team_name, appointment_phone_number, number_of_persons, venue_id, venue_name, venue_school, venue_address, start_time, end_time, effective_state, audit_status, audit_user_id, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5
     </sql>
+
+    <select id="countNumberOfPersons" resultMap="countResultMap">
+        select venue_name, venue_school,sum(number_of_persons) number_of_persons,start_time from appointment ${ew.customSqlSegment}
+    </select>
 
 </mapper>

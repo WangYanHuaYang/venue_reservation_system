@@ -91,9 +91,11 @@ public class MessageCenter extends Model<MessageCenter> {
 
     @ApiModelProperty(value = "删除状态 0_删除 1_未删除")
     @Excel(name = "删除状态 0_删除 1_未删除")
+    @TableLogic
     private Integer delState;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "标题")
+    @Excel(name = "标题")
     private String reserve1;
 
     @Excel(name = "")

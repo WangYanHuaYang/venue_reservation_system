@@ -111,6 +111,50 @@ public class AppointmentController {
     }
 
     /**
+     * @Description: 获取预约表中的团队或个人
+     * @Param: [appointment]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("获取预约表中的团队或个人")
+    @RequestMapping(value = "/getPersionOrTeam", method = RequestMethod.POST)
+    private Msg getPersionOrTeam(@RequestBody Appointment appointment,@RequestParam("isTeam") boolean isTeam, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
+        try {
+            IPage<Appointment> state = baseService.persionOrTeam(new Page<Appointment>(pageNum, pageSize),isTeam, appointment);
+            if (state.getSize() > 0) {
+                return Msg.SUCCESS().add("resultSet", state);
+            } else {
+                return Msg.SUCCESS().add("resultSet", "暂无数据");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Msg.CUSTOM_MSG(500,"服务端错误!");
+        }
+    }
+
+    /**
+     * @Description: 根据年月日，学校名称统计预约人数
+     * @Param: [isSchool 是否根据学校, isYear 是否根据年, isMonth 是否根据月, isDay 是否根据日, appointment 其他条件]
+     * @return: java.util.List<com.genolo.venue_reservation_system.model.Appointment>
+     * @Author: WYHY
+     * @Date: 2020/1/14
+     */
+    @ApiOperation("根据年月日，学校名称统计预约人数")
+    @RequestMapping(value = "/countNumberOfPersons", method = RequestMethod.POST)
+    private Msg countNumberOfPersons(@RequestParam(name = "isSchool") boolean isSchool,
+                                     @RequestParam(name = "isYear") boolean isYear,
+                                     @RequestParam(name = "isMonth") boolean isMonth,
+                                     @RequestParam(name = "isDay") boolean isDay,
+                                     @RequestBody Appointment appointment){
+        List<Appointment> state = baseService.countNumberOfPersons(isSchool,isYear,isMonth,isDay,appointment);
+        if (state.size()>0) {
+            return Msg.SUCCESS().add("result", state);
+        } else {
+            return Msg.SUCCESS().add("resultSet", "暂无数据");
+        }
+    }
+
+    /**
      * @Description: 根据id查询 Appointment
      * @Param: [id]
      * @Author: wyhy

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="css/school_register.css" />
+	</head>
+	<body>
+		<div id="container_body">
+			<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+			<div class="containerTop">
+				<p class="logo">LOGO</p>
+			</div>
+			<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+			<div class="containerCenter">
+				<img class="Left_img" src="img/jihe.jpg" />
+				<div class="containerCenterRight">
+					<p class="Welcomeheading">请填写相应信息</p>
+					<div class="containerCenterRightInput">
+						<form class="layui-form" id="register-form" lay-filter="register-form">
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-shield"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input type="text" name="id" required lay-verify="required" placeholder="请输入邀请码" autocomplete="off" class="layui-input inputUsername">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-user"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input type="text" name="userName" required lay-verify="required|username" placeholder="请输入用户名" autocomplete="off" class="layui-input inputUsername">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-group"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input type="text" name="organization" required lay-verify="required|username" placeholder="请输入组织名" autocomplete="off" class="layui-input inputUsername">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-phone"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input class="layui-input inputUsername" id="phoneNumber" name="phoneNumber" lay-verify="required|phone|number" placeholder="联系电话" type="text">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-envelope"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input class="layui-input inputUsername" id="email" name="email" lay-verify="required|email" placeholder="邮箱" type="text">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-key"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input type="password" id="password" name="password" required lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input inputUsername">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label icon">
+									<i class="fa fa-key"></i>
+								</label>
+								<div class="layui-input-block form-input-item">
+									<input type="password" required lay-verify="required|repass" placeholder="请确认密码" autocomplete="off" class="layui-input inputUsername">
+								</div>
+							</div>
+							<div class="interactiveButton">
+								<button lay-submit lay-filter="register" id="register" class="layui-btn layui-btn-radius">注册</button>
+								<button id="back" type="button" class="layui-btn layui-btn-radius">返回</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+			<div class="containerFoot">
+				<p>© 2002 - 2019 长春职业技术学院 长春市卫星路3278号 [130033]</p>
+				<p>吉ICP备07000052号-3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;吉公网安备 22010202000250号</p>
+				<p>设计维护：「长职 · 新创」信息技术研发中心</p>
+
+			</div>
+			<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+		</div>
+	</body>
+	<script src="../plugins/jquery.min.js"></script>
+	<script src="../plugins/layui/layui.all.js"></script>
+	<script src="../plugins/md5.js"></script>
+	<script type="text/javascript" src="js/Summation.js"></script>
+	<script src="js/register.js"></script>
+</html>

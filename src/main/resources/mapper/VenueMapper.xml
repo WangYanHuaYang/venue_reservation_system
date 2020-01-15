@@ -31,10 +31,10 @@
         <result column="update_time" property="updateTime" />
         <result column="del_state" property="delState" />
         <result column="reserve1" property="reserve1" />
-        <result column="reserve2" property="reserve2" />
+        <result column="reserve2" property="reserve2" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
         <result column="reserve3" property="reserve3" />
-        <result column="reserve4" property="reserve4" />
-        <result column="reserve5" property="reserve5" />
+        <result column="reserve4" property="reserve4" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result column="reserve5" property="reserve5" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

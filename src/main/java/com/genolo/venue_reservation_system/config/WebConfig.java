@@ -41,4 +41,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + filesPath + File.separator);
     }
 
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("redirect:login/index.html");
+    }
+
 }

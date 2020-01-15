@@ -2,6 +2,8 @@ package com.genolo.venue_reservation_system.model;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import cn.afterturn.easypoi.excel.annotation.Excel;
@@ -32,7 +34,6 @@ public class Appointment extends Model<Appointment> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
-    @Excel(name = "id")
     private String id;
 
     @ApiModelProperty(value = "预约人")
@@ -81,12 +82,12 @@ public class Appointment extends Model<Appointment> {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime endTime;
 
-    @ApiModelProperty(value = "有效状态 0_无效 1_有效")
-    @Excel(name = "有效状态 0_无效 1_有效")
+    @ApiModelProperty(value = "有效状态 0_已核销 1_未核销 2_未开始 3_进行中 4_已结束 5_已过期")
+    @Excel(name = "有效状态 0_已核销 1_未核销 2_未开始 3_进行中 4_已结束")
     private Integer effectiveState;
 
-    @ApiModelProperty(value = "审核状态 0_未提交 1_待审核 2_审核通过")
-    @Excel(name = "审核状态 0_未提交 1_待审核 2_审核通过")
+    @ApiModelProperty(value = "审核状态 0_未提交 1_待审核 2_审核通过 3_审核未通过")
+    @Excel(name = "审核状态 0_未提交 1_待审核 2_审核通过 3_审核未通过")
     private Integer auditStatus;
 
     @ApiModelProperty(value = "审核人id")
@@ -107,13 +108,16 @@ public class Appointment extends Model<Appointment> {
     @Excel(name = "删除状态 0_删除 1_未删除")
     private Integer delState;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "预约团队id")
+    @Excel(name = "预约团队id")
     private String reserve1;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "身份证号")
+    @Excel(name = "身份证号")
     private String reserve2;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "审核原因")
+    @Excel(name = "审核原因")
     private String reserve3;
 
     @Excel(name = "")
@@ -121,6 +125,16 @@ public class Appointment extends Model<Appointment> {
 
     @Excel(name = "")
     private String reserve5;
+
+    @ApiModelProperty(value = "查询开始时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    @TableField(exist = false)
+    private LocalDateTime stime;
+
+    @ApiModelProperty(value = "查询结束时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    @TableField(exist = false)
+    private LocalDateTime etime;
 
 
     @Override

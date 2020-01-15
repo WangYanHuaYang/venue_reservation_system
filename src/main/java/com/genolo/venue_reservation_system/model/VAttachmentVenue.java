@@ -108,6 +108,7 @@ public class VAttachmentVenue extends Model<VAttachmentVenue> {
     @Excel(name = "可容纳人数")
     private Integer maxPersons;
 
+    @ApiModelProperty(value = "已预约人数")
     @Excel(name = "已预约人数")
     private Integer numberOfPersons;
 

@@ -16,6 +16,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /**
  * <p>
  * 角色表
@@ -40,6 +43,7 @@ public class SysRole extends Model<SysRole> {
 
     @ApiModelProperty(value = "角色名")
     @Excel(name = "角色名")
+    @NotBlank(message = "角色名不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String roleName;
 
@@ -49,6 +53,7 @@ public class SysRole extends Model<SysRole> {
 
     @ApiModelProperty(value = "权限树")
     @Excel(name = "权限树")
+    @Size(min = 1,message = "至少分配一种权限")
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<String> permissions;
 

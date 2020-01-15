@@ -28,7 +28,7 @@ import java.util.List;
  * @author wyhy
  * @since 2020-01-08
  */
-@Api(tags = {"预约详细信息接口"})
+@Api(tags = {"场馆预约信息接口"})
 @RestController
 @RequestMapping("/v-attachment-venue")
 public class VAttachmentVenueController {

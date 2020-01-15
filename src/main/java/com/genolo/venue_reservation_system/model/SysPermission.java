@@ -13,6 +13,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 /**
  * <p>
  * 权限表
@@ -37,10 +40,12 @@ public class SysPermission extends Model<SysPermission> {
 
     @ApiModelProperty(value = "上级权限id")
     @Excel(name = "上级权限id")
+    @NotBlank(message = "上级权限id不能为空")
     private String parentId;
 
     @ApiModelProperty(value = "权限名")
     @Excel(name = "权限名")
+    @NotBlank(message = "权限名不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String permissionName;
 
@@ -70,6 +75,9 @@ public class SysPermission extends Model<SysPermission> {
     @Excel(name = "删除状态 0_删除 1_未删除")
     private Integer delState;
 
+    @ApiModelProperty(value = "排序")
+    @Min(value = 1,message = "排序不能为空")
+    private Integer sort;
 
     @Override
     protected Serializable pkVal() {

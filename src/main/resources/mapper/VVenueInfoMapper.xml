@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.VVenueInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.VVenueInfo">
+        <result column="id" property="id" />
+        <result column="venue_name" property="venueName" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="address" property="address" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="area" property="area" />
+        <result column="number_of_persons" property="numberOfPersons" />
+        <result column="school_name" property="schoolName" />
+        <result column="venue_project" property="venueProject"  jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result column="suitable_crowd" property="suitableCrowd" />
+        <result column="open_time" property="openTime" />
+        <result column="close_time" property="closeTime" />
+        <result column="remarks" property="remarks" />
+        <result column="lunch_start_time" property="lunchStartTime" />
+        <result column="lunch_end_time" property="lunchEndTime" />
+        <result column="time_period" property="timePeriod" />
+        <result column="rest_time" property="restTime" />
+        <result column="audit_status" property="auditStatus" />
+        <result column="create_user_id" property="createUserId" />
+        <result column="audit_user_id" property="auditUserId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+        <result column="reserve1" property="reserve1" />
+        <result column="reserve2" property="reserve2"  jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result column="reserve3" property="reserve3" />
+        <result column="reserve4" property="reserve4"  jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result column="reserve5" property="reserve5"  jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, venue_name, province, city, district, address, longitude, latitude, area, number_of_persons, school_name, venue_project, suitable_crowd, open_time, close_time, remarks, lunch_start_time, lunch_end_time, time_period, rest_time, audit_status, create_user_id, audit_user_id, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5
+    </sql>
+
+</mapper>

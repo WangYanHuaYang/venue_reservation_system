@@ -2,6 +2,8 @@ package com.genolo.venue_reservation_system.model;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import cn.afterturn.easypoi.excel.annotation.Excel;
@@ -80,9 +82,11 @@ public class News extends Model<News> {
 
     @ApiModelProperty(value = "删除状态 0_删除 1_未删除")
     @Excel(name = "删除状态 0_删除 1_未删除")
+    @TableLogic
     private Integer delState;
 
-    @Excel(name = "")
+    @ApiModelProperty(value = "新闻类型 1_新闻 2_公告")
+    @Excel(name = "新闻类型 1_新闻 2_公告")
     private String reserve1;
 
     @Excel(name = "")
@@ -96,6 +100,16 @@ public class News extends Model<News> {
 
     @Excel(name = "")
     private String reserve5;
+
+    @ApiModelProperty(value = "查询开始时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @TableField(exist = false)
+    private LocalDate stime;
+
+    @ApiModelProperty(value = "查询结束时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @TableField(exist = false)
+    private LocalDate etime;
 
 
     @Override

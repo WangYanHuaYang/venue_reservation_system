@@ -1,5 +1,8 @@
 package com.genolo.venue_reservation_system.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.genolo.venue_reservation_system.model.News;
 import com.genolo.venue_reservation_system.dao.NewsMapper;
 import org.springframework.stereotype.Service;
@@ -37,4 +40,17 @@ public class NewsService extends BaseService<NewsMapper, News> {
         return state;
     }
 
+    @Override
+    public <E extends IPage<News>> E page(E page, Wrapper<News> queryWrapper) {
+        QueryWrapper<News> wrapper=(QueryWrapper<News>) queryWrapper;
+        News news=queryWrapper.getEntity();
+        if (news.getStime()!=null){
+            wrapper.ge("release_time",news.getStime());
+        }
+        if (news.getEtime()!=null){
+            wrapper.le("release_time",news.getEtime());
+        }
+        E p=super.page(page, wrapper);
+        return p;
+    }
 }

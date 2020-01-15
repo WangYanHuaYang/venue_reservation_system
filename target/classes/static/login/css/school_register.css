@@ -1,0 +1,157 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background: antiquewhite;
+}
+
+#container_body {
+	width: 1600px;
+	height: 900px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.containerTop {}
+
+.logo {
+	height: 100px;
+	width: 250px;
+}
+
+.logo:hover {
+
+	cursor: pointer;
+}
+
+/* logo */
+.containerTop p {
+	color: rgb(169, 169, 169);
+	height: 100px;
+	width: 250px;
+	font-size: 80px;
+	margin-top: 10px;
+}
+
+.containerCenter {}
+
+.Left_img {
+	width: 1000px;
+	height: 700px;
+	float: left;
+	border: 1px solid black;
+	margin-left: 110px;
+}
+
+
+.containerCenterRight {
+	background: white;
+	width: 382px;
+	height: 699px;
+	border: 1px solid black;
+	float: left;
+}
+
+.Welcomeheading {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 80px;
+}
+
+.containerCenterRightInput {
+	margin-left: 50px;
+	margin-top: 50px;
+}
+
+.umserimg {
+	width: 15px;
+	height: 15px;
+}
+
+.pswimg {
+	width: 15px;
+	height: 15px;
+	float: left;
+	margin-top: 30px;
+}
+.icon{
+	padding-right: 10px;
+	width: auto;
+	color: #1EAA8F;
+}
+.form-input-item{
+	width: 230px;
+	margin-left: 45px;
+}
+
+.inputUsername {
+	border-top: none;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	border-right: none;
+
+}
+
+.inputPassword {
+	width: 120px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 15px;
+	border-top: none;
+	display: block;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	border-right: none;
+	float: left;
+}
+
+#getphoneid {
+	float: left;
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+.Forgetpassword {
+	margin-top: 20px;
+	margin-left: 200px;
+}
+
+.Forgetpassword:hover {
+	cursor: pointer;
+	color: #0000FF;
+}
+
+.pswbox {
+	height: 20px;
+}
+
+.interactiveButton {
+	text-align: left;
+	margin-top: 40px;
+	margin-left: 25px;
+}
+
+.interactiveButton button {
+	width: 120px;
+	background: #1EAA8F;
+}
+
+.containerFoot {
+	position: absolute;
+	bottom: 25px;
+	right: 30px;
+}
+
+.containerFoot p {
+	float: left;
+	font-size: 15px;
+	margin-left: 30px;
+
+}
+
+.containerFoot p:hover {
+	cursor: pointer;
+	/* 连接伪类:改变鼠标样式为点击时的小手 */
+}

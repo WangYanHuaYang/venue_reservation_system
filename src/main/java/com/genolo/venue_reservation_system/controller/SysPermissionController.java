@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SysPermissionController {
      */
     @ApiOperation("新增 SysPermission")
     @RequestMapping(value = "/saveSysPermission", method = RequestMethod.PUT)
-    private Msg saveSysPermission(@RequestBody SysPermission sys_permission) {
+    private Msg saveSysPermission(@Valid @RequestBody SysPermission sys_permission) {
         sys_permission.setCreateTime(LocalDateTime.now());
         sys_permission.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(sys_permission);
@@ -81,7 +82,7 @@ public class SysPermissionController {
      */
     @ApiOperation("修改 SysPermission")
     @RequestMapping(value = "/updateSysPermission", method = RequestMethod.POST)
-    private Msg updateSysPermission(@RequestBody SysPermission sys_permission) {
+    private Msg updateSysPermission(@Valid @RequestBody SysPermission sys_permission) {
         boolean state = baseService.updateById(sys_permission);
         sys_permission.setUpdateTime(LocalDateTime.now());
         if (state) {
@@ -120,7 +121,7 @@ public class SysPermissionController {
     @ApiOperation("查询 SysPermission树")
     @RequestMapping(value = "/getSysPermissions", method = RequestMethod.POST)
     private List<SysPermission> getSysPermissions(@RequestBody SysPermission sys_permission) {
-        List<SysPermission> state = baseService.list(new QueryWrapper<SysPermission>().setEntity(sys_permission).orderByAsc("id"));
+        List<SysPermission> state = baseService.list(new QueryWrapper<SysPermission>().setEntity(sys_permission).orderByAsc("sort"));
         return state;
     }
 

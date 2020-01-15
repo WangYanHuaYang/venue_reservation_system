@@ -1,0 +1,35 @@
+html,body{
+    height: 100%;
+}
+#add-user-form,#inv-user-form{
+    padding-right: 50px;
+    padding-top: 20px;
+}
+.layui-fluid{
+    height: 100%;
+}
+.context{
+    height: 90%;
+}
+.full{
+    height: 100%;
+}
+#permission-tree {
+    height: 100%;
+    overflow-y: auto;
+}
+.item-bottom{
+    width: 95%;
+    bottom: 0rem;
+    position: absolute;
+}
+.btn-right{
+    float: right;
+}
+.find{
+    display: inline-block;
+    width: 18rem;
+}
+.find-input{
+    margin-right: 0px;
+}

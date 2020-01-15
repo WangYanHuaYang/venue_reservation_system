@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SysRoleController {
      */
     @ApiOperation("新增 SysRole")
     @RequestMapping(value = "/saveSysRole", method = RequestMethod.PUT)
-    private Msg saveSysRole(@RequestBody SysRole sys_role) {
+    private Msg saveSysRole(@Valid @RequestBody SysRole sys_role) {
         sys_role.setCreateTime(LocalDateTime.now());
         sys_role.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(sys_role);
@@ -81,7 +82,7 @@ public class SysRoleController {
      */
     @ApiOperation("修改 SysRole")
     @RequestMapping(value = "/updateSysRole", method = RequestMethod.POST)
-    private Msg updateSysRole(@RequestBody SysRole sys_role) {
+    private Msg updateSysRole(@Valid @RequestBody SysRole sys_role) {
         sys_role.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.updateById(sys_role);
         if (state) {
@@ -99,7 +100,7 @@ public class SysRoleController {
      */
     @ApiOperation("多条件查询 SysRole")
     @RequestMapping(value = "/selectSysRoles", method = RequestMethod.POST)
-    private Msg selectSysRoles(@RequestBody SysRole sys_role, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
+    private Msg selectSysRoles(@RequestBody SysRole sys_role, @RequestParam(value = "pageNum") Integer pageNum, @RequestParam(value = "pageSize") Integer pageSize) {
         Page<SysRole> page = new Page<SysRole>(pageNum, pageSize);
         QueryWrapper<SysRole> wrapper = new QueryWrapper<SysRole>().setEntity(sys_role);
         wrapper.orderBy(true, false, "update_time");

@@ -1,0 +1,11 @@
+#add-role-form{
+    padding-right: 50px;
+    padding-top: 20px;
+}
+#permission-tree {
+    height: 13rem;
+    overflow-y: auto;
+}
+.btn-right{
+    float: right;
+}

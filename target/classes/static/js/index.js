@@ -1,3 +1,11 @@
+const loginBean=chackSession()
+$(document).ready(function(){
+    initMenu()
+    $('#exit').click(function(){
+        sessionStorage.removeItem('login-bean')
+        window.location.href = "/login/index.html";
+    })
+})
 layui.use('element', function() {
     var $ = layui.jquery
     var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -76,3 +84,61 @@ layui.use('element', function() {
         }
     });
 });
+
+function initMenu(){
+    let data=loginBean.permissionTree;
+    let menu = $("#nav-left");
+    $.each(data, function(i,item){
+        let a = $("<a href='javascript:;'></a>");
+
+        let href = item.permissionUrl;
+        let css = item.permissionCss;
+        if(css!=null && css!=""){
+            a.append("<i aria-hidden='true' class='fa " + css +"'></i>&nbsp;&nbsp;");
+        }
+        a.append(item.permissionName);
+        if(href != null && href != ""){
+            a.attr("data-url", href);
+            a.attr("data-id", item.id);
+            a.attr("data-type", 'tabAdd');
+            a.attr("class", 'site-demo-active');
+            a.attr("data-title", item.permissionName);
+        }
+
+        let li = $("<li class='layui-nav-item'></li>");
+        li.append(a);
+        menu.append(li);
+
+        //多级菜单
+        setChild(li, item.child)
+
+    });
+}
+
+function setChild(parentElement, child){
+    if(child != null && child.length > 0){
+        $.each(child, function(j,item2){
+            var ca = $('<a href=javascript:;" data-type="tabAdd" class="site-demo-active"></a>');
+            ca.attr("data-url", item2.permissionUrl);
+            ca.attr("data-id", item2.id);
+            ca.attr("data-title", item2.permissionName);
+
+            var css2 = item2.permissionCss;
+            if(css2!=null && css2!=""){
+                ca.append("<i aria-hidden='true' class='fa " + css2 +"'></i>&nbsp;&nbsp;");
+            }
+            ca.append(item2.permissionName);
+
+            var dd = $("<dd></dd>");
+            dd.append(ca);
+
+            var dl = $("<dl class='layui-nav-child'></dl>");
+            dl.append(dd);
+
+            parentElement.append(dl);
+
+            // 递归
+            setChild(dd, item2.child);
+        });
+    }
+}

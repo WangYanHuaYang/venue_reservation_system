@@ -19,33 +19,39 @@
                 <i aria-hidden="true" class="fa fa-refresh"></i></button>
         </div>
         <div class="topbutton" >
-            <button id="addPermission" type="button" class="layui-btn"><i
+            <button id="addPermission" type="reset" class="layui-btn"><i
                     class="fa fa-plus"></i>添加</button>
         </div>
     </form>
-    <div class="layui-form">
+    <div class="layui-form" lay-filter="table">
         <table id="deptTreeTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
     </div>
 </div>
 </body>
 <!-- 弹出选择样式 -->
-<div class="layui-form" id="add-permission" hidden>
+<div class="layui-form" id="add-permission" lay-filter="add-permission" hidden>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序：</label>
+        <div class="layui-input-block">
+            <input class="layui-input" lay-verify="required|number" placeholder="排序" type="text" name="sort" id="sort">
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">上级菜单：</label>
         <div class="layui-input-block">
-            <select id="parentMenu"></select>
+            <select id="parentMenu" name="parentMenu" lay-verify="required"></select>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">名称：</label>
         <div class="layui-input-block">
-            <input class="layui-input" placeholder="名称" type="text" id="permissionName">
+            <input class="layui-input" lay-verify="required" placeholder="名称" type="text" name="permissionName" id="permissionName">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">类型：</label>
         <div class="layui-input-block">
-            <select lay-verify="">
+            <select id="permissionType" name="permissionType" lay-verify="required">
                 <option value="1">菜单</option>
                 <option value="2">按钮</option>
             </select>
@@ -54,14 +60,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">链接：</label>
         <div class="layui-input-block">
-            <input class="layui-input" placeholder="链接" type="text" name="name" id="permissionUrl">
+            <input class="layui-input" lay-verify="required" placeholder="链接" type="text" name="permissionUrl" id="permissionUrl">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">样式：</label>
         <div class="layui-input-block">
             <button onclick="selectCss()" class="layui-btn">选择</button>
-            <input type="hidden" name="css" id="css"><i id="cssImg" class="fa"></i>
+            <input type="hidden" name="permissionCss" id="permissionCss"><i id="cssImg" class="fa"></i>
         </div>
     </div>
 </div>

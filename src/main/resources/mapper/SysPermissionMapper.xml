@@ -13,11 +13,12 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="del_state" property="delState" />
+        <result column="sort" property="sort" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, parent_id, permission_name, permission_url, permission_css, permission_type, create_time, update_time, del_state
+        id, parent_id, permission_name, permission_url, permission_css, permission_type, create_time, update_time, del_state,sort
     </sql>
 
 </mapper>

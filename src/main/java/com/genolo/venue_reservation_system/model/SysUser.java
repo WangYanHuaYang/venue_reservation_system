@@ -16,9 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 /**
  * <p>
@@ -44,36 +42,41 @@ public class SysUser extends Model<SysUser> {
 
     @ApiModelProperty(value = "上级id")
     @Excel(name = "上级id")
-    @TableField(typeHandler = FastjsonTypeHandler.class)
-    private List<String> parentsId;
+    @NotBlank(message = "上级id不能为空")
+    private String parentsId;
 
     @ApiModelProperty(value = "用户名")
     @Excel(name = "用户名")
+    @NotBlank(message = "用户名不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String userName;
 
     @ApiModelProperty(value = "密码")
     @Excel(name = "密码")
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     @ApiModelProperty(value = "手机号")
     @Pattern(regexp = "^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$",message = "手机号码格式错误")
     @Excel(name = "手机号")
+    @NotBlank(message = "手机号不能为空")
     private String phoneNumber;
 
     @ApiModelProperty(value = "邮箱")
     @Email
     @Excel(name = "邮箱")
+    @NotBlank(message = "邮箱不能为空")
     private String eMail;
 
     @ApiModelProperty(value = "机构名称")
     @Excel(name = "机构名称")
+    @NotBlank(message = "机构名称不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String organization;
 
     @ApiModelProperty(value = "角色列表")
     @Excel(name = "角色列表")
-    @NotEmpty
+    @Size(min = 1,message = "至少分配一个角色")
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<String> roles;
 
@@ -94,6 +97,10 @@ public class SysUser extends Model<SysUser> {
     @ApiModelProperty(value = "删除状态 0_删除 1_未删除")
     @Excel(name = "删除状态 0_删除 1_未删除")
     private Integer delState;
+
+    @ApiModelProperty(value = "旧密码")
+    @TableField(exist = false)
+    private String oldPassword;
 
 
     @Override

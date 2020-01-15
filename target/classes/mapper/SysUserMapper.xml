@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.SysUser">
         <id column="id" property="id" />
-        <result column="parents_id" property="parentsId" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result column="parents_id" property="parentsId"/>
         <result column="user_name" property="userName" />
         <result column="password" property="password" />
         <result column="phone_number" property="phoneNumber" />

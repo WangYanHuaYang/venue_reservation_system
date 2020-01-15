@@ -1072,4 +1072,20 @@ String aaa="22038119991103522x";
         return decimalFormat.format(max);
     }
 
+
+    /**
+     * @Description: list去重
+     * @Param: [list]
+     * @return: java.util.List
+     * @Author: WYHY
+     * @Date: 2020/1/14
+     */
+    public static List<String> twoClear(List<String> list){
+        List<String> tmp = new ArrayList<String>();
+        LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>();
+        linkedHashSet.addAll(list);
+        tmp.addAll(linkedHashSet);
+        return tmp;
+    }
+
 }

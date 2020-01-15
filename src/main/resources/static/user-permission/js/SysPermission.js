@@ -1,53 +1,27 @@
 // 弹出框类型 1-新增 2-修改
 var modelType=1;
 var tip_index = 0;
+var form = layui.form;
+var layer = layui.layer;
 $(document).ready(function(){
-    layui.use('form', function(){
-        getParentPermission()
-        var form = layui.form;
-        form.render('select')
-        //各种基于事件的操作，下面会有进一步介绍
-    });
     initDeptTreeTable()
+    getParentPermission();
     $('#addPermission').click(function(){
+        closeModel()
+        form.render('select', 'add-permission')
         layer.open({
             type: 1,
             area: ['500px', '450px'],
             content: $('#add-permission'),
             btn: ['保存', '关闭'],
-            yes: function() {},
+            yes: function(){
+                addPermission()
+            },
             btn2: function() {
                 layer.closeAll();
             },
             title: '新增权限'
         });
-    })
-    $('#save').click(function(){
-        if ($('#parentMenu').val()==''||$('#parentMenu').val()==null){
-            layer.msg('父级权限不能为空', {
-                shift: -1,
-                time: 1000
-            });
-        }else if ($('#permissionName').val()==''||$('#permissionName').val()==null){
-            layer.msg('权限名不能为空', {
-                shift: -1,
-                time: 1000
-            });
-        }else if ($('#permissionType').val()==''||$('#permissionType').val()==null){
-            layer.msg('权限类型不能为空', {
-                shift: -1,
-                time: 1000
-            });
-        }else {
-            switch (modelType) {
-                case 1:
-                    addPermission()
-                    break;
-                case 2:
-                    updat($('#save').attr('upd-id'))
-                    break;
-            }
-        }
     })
     $("table").on("mouseover", "td", function () {
         if (this.offsetWidth < this.scrollWidth) { //判断文本是否超出
@@ -65,7 +39,6 @@ $(document).ready(function(){
         layer.close(tip_index);
     })
     $(document).on("click", ".update_btn", function() {
-        changeModelType(2)
         id = $(this).attr("upd-id");
         getPermissionById(id)
     });
@@ -103,12 +76,15 @@ function addPermission(){
             permissionName:$('#permissionName').val(),
             permissionType:$('#permissionType').val(),
             permissionUrl:$('#permissionUrl').val(),
-            permissionCss:$('#css').val()
+            permissionCss:$('#permissionCss').val(),
+            sort:$('#sort').val()
         }),
         success: function (result) {
-            closeModel()
             if (result.code==0){
                 initDeptTreeTable()
+                form.render(null, 'table')
+                layer.closeAll();
+                getParentPermission()
             }else {
                 layer.msg(result.message, {
                     shift: -1,
@@ -130,6 +106,7 @@ function delet(id){
             if (data.code==0){
                 layer.msg("删除成功")
                 initDeptTreeTable()
+                getParentPermission()
             }else {
                 layer.msg(data.message, {
                     shift: -1,
@@ -141,19 +118,23 @@ function delet(id){
 }
 //修改按钮
 function getPermissionById(id){
-    getParentPermission()
     $.ajax({
         url: '/sys-permission/selectSysPermissionById?id='+id,
         type: 'POST',
         async:false,
         success: function (result) {
             if (result.code==0){
-                $('#parentMenu').val(result.context.result.parentId)
-                $('#permissionName').val(result.context.result.permissionName)
-                $('#permissionType').val(result.context.result.permissionType)
-                $('#permissionUrl').val(result.context.result.permissionUrl)
+                form.val("add-permission", {
+                    "parentMenu": result.context.result.parentId,
+                    "permissionName": result.context.result.permissionName,
+                    "permissionType": result.context.result.permissionType,
+                    "permissionUrl": result.context.result.permissionUrl,
+                    "permissionCss": result.context.result.permissionCss,
+                    "sort":result.context.result.sort
+                })
+                form.render('select')
+                $('#permissionName').attr('upd-id',result.context.result.id)
                 $('#cssImg').attr('class','fa '+result.context.result.permissionCss)
-                $('#save').attr('upd-id',result.context.result.id)
             }else {
                 layer.msg(result.message, {
                     shift: -1,
@@ -162,9 +143,24 @@ function getPermissionById(id){
             }
         }
     });
+    layer.open({
+        type: 1,
+        area: ['500px', '450px'],
+        content: $('#add-permission'),
+        btn: ['保存', '关闭'],
+        yes: function() {
+            updat($('#permissionName').attr('upd-id'))
+            layer.closeAll();
+        },
+        btn2: function() {
+            layer.closeAll();
+        },
+        title: '修改权限'
+    });
 }
 // 修改权限
 function updat(id){
+    console.info($('#permissionCss').val())
     $.ajax({
         url: '/sys-permission/updateSysPermission',
         type: 'POST',
@@ -176,12 +172,15 @@ function updat(id){
             permissionName:$('#permissionName').val(),
             permissionType:$('#permissionType').val(),
             permissionUrl:$('#permissionUrl').val(),
-            permissionCss:$('#css').val()
+            permissionCss:$('#permissionCss').val(),
+            sort:$('#sort').val()
         }),
         success: function (result) {
-            closeModel()
             if (result.code==0){
                 initDeptTreeTable()
+                var form = layui.form;
+                form.render(null, 'table')
+                getParentPermission()
             }else {
                 layer.msg(result.message, {
                     shift: -1,
@@ -206,6 +205,7 @@ function getParentPermission(){
                 $.each(result.context.resultSet.records,function(index,item){
                     $('#parentMenu').append('<option value="'+item.id+'">'+item.permissionName+'</option>')
                 })
+                form.render('select')
             }else {
                 layer.msg(result.message, {
                     shift: -1,
@@ -266,8 +266,8 @@ function initDeptTreeTable() {
                 width:'20%',
                 formatter: function(value,row, index) {
                     var actions = [];
-                    actions.push('<button type="button" title="修改" upd-id="' + value.id + '" class="layui-btn">修改</button>');
-                    actions.push('<button type="button" title="删除" del-id="' + value.id + '" class="layui-btn layui-btn-danger">删除</button>');
+                    actions.push('<button type="button" title="修改" upd-id="' + value.id + '" class="update_btn layui-btn layui-btn-xs">修改</button>');
+                    actions.push('<button type="button" title="删除" del-id="' + value.id + '" class="delete-btn layui-btn layui-btn-danger layui-btn-xs">删除</button>');
                     return actions.join('');
                 }
 
@@ -285,19 +285,5 @@ function closeModel(){
     $('#permissionType').val('0')
     $('#permissionUrl').val('')
     $('#cssImg').removeClass()
-    $('#save').removeAttr('upd-id')
-}
-// 模态框状态改变
-function changeModelType(type){
-    modelType=type
-    $('#myModalLabel').empty()
-    switch (modelType) {
-        case 1:
-            $('#myModalLabel').append('权限添加')
-            $('#save').removeAttr('upd-id')
-            break;
-        case 2:
-            $('#myModalLabel').append('权限修改')
-            break;
-    }
+    $('#permissionName').removeAttr('upd-id')
 }

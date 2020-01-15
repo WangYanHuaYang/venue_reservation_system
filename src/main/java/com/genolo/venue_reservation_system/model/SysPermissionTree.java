@@ -2,6 +2,7 @@ package com.genolo.venue_reservation_system.model;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,7 +17,9 @@ public class SysPermissionTree {
 
     private Integer permissionType;
 
-    private String css;
+    private Integer sort;
+
+    private String permissionCss;
 
     private List<SysPermissionTree> child;
 
@@ -26,6 +29,7 @@ public class SysPermissionTree {
         this.permissionUrl=sysPermission.getPermissionUrl();
         this.parentId=sysPermission.getParentId();
         this.permissionType=sysPermission.getPermissionType();
-        this.css=sysPermission.getPermissionCss();
+        this.permissionCss=sysPermission.getPermissionCss();
+        this.sort=sysPermission.getSort();
     }
 }

@@ -5,6 +5,7 @@ import com.genolo.venue_reservation_system.Util.ServiceUtil;
 import com.genolo.venue_reservation_system.Util.Utils;
 import com.genolo.venue_reservation_system.dao.SysPermissionMapper;
 import com.genolo.venue_reservation_system.dao.SysRoleMapper;
+import com.genolo.venue_reservation_system.exceptions.CustomException;
 import com.genolo.venue_reservation_system.model.*;
 import com.genolo.venue_reservation_system.dao.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ import cn.afterturn.easypoi.excel.entity.ImportParams;
 import org.springframework.web.multipart.MultipartFile;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 用户表 服务类
@@ -111,13 +115,51 @@ public class SysUserService extends BaseService<SysUserMapper, SysUser> {
         for (int i =0;i<roles.size();i++){
             permissionIdlist.addAll(roles.get(i).getPermissions());
         }
-
+        Utils.twoClear(permissionIdlist);
         List<SysPermissionTree> permissionList=new ArrayList<SysPermissionTree>();
         for (int i=0;i<permissionIdlist.size();i++){
-            SysPermissionTree permission=new SysPermissionTree(sysPermissionMapper.selectOne(new QueryWrapper<SysPermission>().eq("id",permissionIdlist.get(i))));
-            permissionList.add(permission);
+            SysPermission sysPermission=sysPermissionMapper.selectOne(new QueryWrapper<SysPermission>().eq("id",permissionIdlist.get(i)));
+            if (sysPermission!=null){
+                SysPermissionTree permission=new SysPermissionTree(sysPermission);
+                permissionList.add(permission);
+            }
         }
+        permissionList=permissionList.stream().sorted(Comparator.comparing(SysPermissionTree::getSort)).collect(Collectors.toList());
         return ServiceUtil.makePermissionTree(permissionList);
     }
 
+    /**
+     * @Description: 重置密码
+     * @Param: [id]
+     * @return: boolean
+     * @Author: WYHY
+     * @Date: 2020/1/15
+     */
+    public boolean resetPassword(String id){
+        SysUser user=new SysUser();
+        user.setId(id);
+        user.setPassword(Utils.MD5(Utils.MD5("888888")));
+        return retBool(getBaseMapper().updateById(user));
+    }
+
+    @Override
+    public boolean updateById(SysUser entity) {
+        entity.setUpdateTime(LocalDateTime.now());
+        SysUser user=getBaseMapper().selectById(entity.getId());
+        if (!Utils.MD5(entity.getOldPassword()).equals(user.getPassword())){
+            throw new CustomException(500,"原密码错误");
+        }
+        if (entity.getOldPassword()==null){
+            entity.setPassword(null);
+        }
+        return super.updateById(entity);
+    }
+
+    @Override
+    public boolean save(SysUser entity) {
+        entity.setCreateTime(LocalDateTime.now());
+        entity.setUpdateTime(LocalDateTime.now());
+        entity.setPassword(Utils.MD5(entity.getPassword()));
+        return super.save(entity);
+    }
 }

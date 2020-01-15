@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genolo.venue_reservation_system.dao.TeamUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.genolo.venue_reservation_system.model.TeamUser">
+        <id column="id" property="id" />
+        <result column="members_name" property="membersName" />
+        <result column="members_phone" property="membersPhone" />
+        <result column="members_e_mail" property="membersEMail" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_state" property="delState" />
+        <result column="members_card_id" property="membersCardId" />
+        <result column="team_id" property="teamId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, members_name, members_phone, members_e_mail, create_time, update_time, del_state, members_card_id, team_id
+    </sql>
+
+</mapper>

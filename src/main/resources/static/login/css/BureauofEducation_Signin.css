@@ -1,0 +1,142 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	background: antiquewhite;
+}
+#containerBody {
+	width: 1600px;
+	height: 900px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.containerTop:hover{
+	
+}
+
+.logo:hover{
+	height: 100px;
+	width: 250px;
+	cursor: pointer;
+}
+/* logo */
+.containerTop p {
+	height: 100px;
+	width: 250px;
+	color: rgb(169, 169, 169);
+	font-size: 80px;
+	margin-top: 10px;
+}
+
+.containerCenter {}
+
+.leftImg {
+	width: 1000px;
+	height: 700px;
+	float: left;
+	border: 1px solid black;
+	margin-left: 110px;
+}
+
+
+
+.containerCenterRight {
+	background: white;
+	width: 382px;
+	height: 699px;
+	border: 1px solid black;
+	float: left;
+}
+
+.welcomeHead {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 80px;
+}
+
+.containerCenterRightInput {
+	margin-left: 50px;
+	margin-top: 100px;
+}
+
+.usernameImg {
+	width: 15px;
+	height: 15px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.pswImg {
+	margin-left: 10px;
+	width: 15px;
+	height: 15px;
+	float: left;
+	margin-top: 10px;
+}
+
+.inputUsername {
+	width: 230px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	border-top: none;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	border-right: none;
+
+}
+
+.inputPassword {
+	width: 230px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 40px;
+	border-top: none;
+	display: block;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	border-right: none;
+}
+
+.forGetPassword {
+	margin-top: 20px;
+	margin-left: 200px;
+}
+.forGetPassword:hover {
+	cursor: pointer;
+	color: #0000FF;
+}
+
+.pswbox {
+	height: 20px;
+}
+
+.interactiveButton {
+	margin-top: 100px;
+	margin-left: 50px;
+}
+
+.interactiveButton button {
+	width: 200px;
+	background: #1EAA8F;
+}
+
+.containerFoot {
+position: absolute;
+	right: 115px;
+	bottom: 15px;
+}
+
+.containerFoot p {
+	float: left;
+	font-size: 15px;
+	margin-left: 30px;
+
+}
+
+.containerFoot p:hover {
+	cursor: pointer;
+	/* 连接伪类:改变鼠标样式为点击时的小手 */
+}

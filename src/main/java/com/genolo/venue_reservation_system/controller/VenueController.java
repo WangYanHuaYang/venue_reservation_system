@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -45,7 +47,7 @@ public class VenueController {
      */
     @ApiOperation("新增 Venue")
     @RequestMapping(value = "/saveVenue", method = RequestMethod.PUT)
-    private Msg saveVenue(@RequestBody Venue venue) {
+    private Msg saveVenue(@Valid @RequestBody Venue venue) {
         venue.setCreateTime(LocalDateTime.now());
         venue.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(venue);
@@ -64,7 +66,7 @@ public class VenueController {
      */
     @ApiOperation("删除 Venue (非逻辑删除)")
     @RequestMapping(value = "/deleteVenue", method = RequestMethod.DELETE)
-    private Msg deleteVenue(@RequestParam(value = "id", defaultValue = "no") String id) {
+    private Msg deleteVenue(@NotBlank(message = "删除id不能为空") @RequestParam(value = "id") String id) {
         boolean state = baseService.removeById(id);
         if (state) {
             return Msg.SUCCESS();
@@ -81,7 +83,7 @@ public class VenueController {
      */
     @ApiOperation("修改 Venue")
     @RequestMapping(value = "/updateVenue", method = RequestMethod.POST)
-    private Msg updateVenue(@RequestBody Venue venue) {
+    private Msg updateVenue(@Valid@RequestBody Venue venue) {
         venue.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.updateById(venue);
         if (state) {

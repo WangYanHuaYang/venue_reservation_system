@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/RoleManager.css">
+</head>
+<body>
+<div class="layui-fluid">
+<div class="layui-row">
+    <button class="layui-btn" id="add-role">新增</button>
+</div>
+<div class="layui-row">
+    <table id="roles" lay-filter="roles"></table>
+</div>
+<div id="pageList"></div>
+</div>
+<script type="text/html" id="tool-bar">
+    <button class="layui-btn layui-btn-xs" lay-event="upd">修改</button>
+    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+</script>
+</body>
+<form class="layui-form" id="add-role-form" lay-filter="add-role-form" hidden>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色名称</label>
+        <div class="layui-input-block">
+            <input class="layui-input" id="roleName" name="roleName" lay-verify="required" placeholder="角色名称" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色描述</label>
+        <div class="layui-input-block">
+            <input class="layui-input" id="roleDescription" name="roleDescription" lay-verify="required" placeholder="角色描述" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">权限</label>
+        <div class="layui-input-block">
+            <div id="permission-tree" name="permissions"></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block btn-right">
+            <button lay-submit lay-filter="save" class="layui-btn layui-btn-sm">保存</button>
+            <button type="button" id="close" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+        </div>
+    </div>
+</form>
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/layui/layui.all.js"></script>
+<script src="../plugins/Utils.js"></script>
+<script src="js/RoleManager.js"></script>
+</html>

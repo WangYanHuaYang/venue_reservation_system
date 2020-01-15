@@ -2,9 +2,10 @@ package com.genolo.venue_reservation_system.controller;
 
 import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
-import com.genolo.venue_reservation_system.model.Attachment;
+import com.genolo.venue_reservation_system.Util.Utils;
 import com.genolo.venue_reservation_system.model.LoginBean;
 import com.genolo.venue_reservation_system.model.SysUser;
+import com.genolo.venue_reservation_system.exceptions.CustomException;
 import com.genolo.venue_reservation_system.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,10 +49,17 @@ public class SysUserController {
      */
     @ApiOperation("新增 SysUser and 获取邀请码")
     @RequestMapping(value = "/saveSysUser", method = RequestMethod.PUT)
-    private Msg saveSysUser(@RequestBody SysUser sys_user) {
-        sys_user.setCreateTime(LocalDateTime.now());
-        sys_user.setUpdateTime(LocalDateTime.now());
-        boolean state = baseService.save(sys_user);
+    private Msg saveSysUser(@Valid @RequestBody SysUser sys_user){
+        boolean state=false;
+        try {
+            state = baseService.save(sys_user);
+        }catch (Exception e){
+            if (e.getMessage().contains("phone_number_UNIQUE")){
+                throw new CustomException(500,"手机号已被注册");
+            }else if (e.getMessage().contains("e_mail_UNIQUE")){
+                throw new CustomException(500,"邮箱已被注册");
+            }
+        }
         if (state) {
             return Msg.SUCCESS().add("InvitationCode",sys_user.getId());
         } else {
@@ -84,9 +92,25 @@ public class SysUserController {
      */
     @ApiOperation("修改 SysUser and 使用邀请码注册")
     @RequestMapping(value = "/updateSysUser", method = RequestMethod.POST)
-    private Msg updateSysUser(@RequestBody SysUser sys_user) {
-        sys_user.setUpdateTime(LocalDateTime.now());
+    private Msg updateSysUser(@Valid @RequestBody SysUser sys_user) {
         boolean state = baseService.updateById(sys_user);
+        if (state) {
+            return Msg.SUCCESS();
+        } else {
+            return Msg.FAIL();
+        }
+    }
+
+    /**
+     * @Description: 重置密码
+     * @Param: [sys_user]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("重置密码")
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    private Msg resetPassword(@RequestParam(name = "id")String id) {
+        boolean state = baseService.resetPassword(id);
         if (state) {
             return Msg.SUCCESS();
         } else {
@@ -105,6 +129,7 @@ public class SysUserController {
     private Msg selectSysUsers(@RequestBody SysUser sys_user, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysUser> page = new Page<SysUser>(pageNum, pageSize);
         QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>().setEntity(sys_user);
+        wrapper.isNotNull("password");
         wrapper.orderBy(true, false, "update_time");
         IPage<SysUser> state = baseService.page(page, wrapper);
         if (state.getSize() > 0) {
@@ -112,6 +137,22 @@ public class SysUserController {
         } else {
             return Msg.FAIL();
         }
+    }
+
+    /**
+     * @Description: 多条件查询 SysUser 树
+     * @Param: [sys_user]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("多条件查询 SysUser 树")
+    @RequestMapping(value = "/sysUsersTree", method = RequestMethod.POST)
+    private List<SysUser> selectSysUsersTree(@RequestBody SysUser sys_user) {
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>().setEntity(sys_user);
+        wrapper.isNotNull("password");
+        wrapper.orderBy(true, false, "update_time");
+        List<SysUser> state = baseService.list(wrapper);
+        return state;
     }
 
     /**
@@ -140,10 +181,10 @@ public class SysUserController {
      */
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    private Msg Login(@NotBlank@RequestParam(value = "usercode") String usercode,
-                      @NotBlank@RequestParam(value = "pwd") String pwd) {
+    private Msg Login(@NotBlank(message = "用户名不能为空")@RequestParam(value = "usercode") String usercode,
+                      @NotBlank(message = "密码不能为空")@RequestParam(value = "pwd") String pwd) {
         try {
-                LoginBean loginBean = baseService.login(usercode, pwd);
+                LoginBean loginBean = baseService.login(usercode, Utils.MD5(pwd));
                 switch (loginBean.getState()) {
                     case 401:
                     case 404:

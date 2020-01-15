@@ -1737,7 +1737,7 @@
 $(".demo-icon-font").click(function(){
 	var cla = $(this).children("i:first").attr("class").split(" ");
 	var l = cla.length;
-	parent.$("#css").val(cla[l-1]);console.log(cla[l-1])
+	parent.$("#permissionCss").val(cla[l-1]);
 	parent.$("#cssImg").removeClass();
 	parent.$("#cssImg").addClass("fa");
 	parent.$("#cssImg").addClass(cla[l-1]);

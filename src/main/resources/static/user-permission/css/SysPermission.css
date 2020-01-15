@@ -413,23 +413,24 @@ div.ruler div.cursor {height:20px; width:30px; background-color:#3C6E31; color:w
 .layui-table>thead>tr>th:first-child{display: none;}
 
 /* 2019-10-24 修改- 修改人：张鹤 */
+/* 2020-01-10 修改- 修改人：王颜华阳 */
 .fixed-table-container thead>tr {
     background: #009688;
     color: #fff;
-    font-size: 16px;
-    height: 50px;
-    line-height: 50px;
+    font-size: 14px;
+    height: 22px;
+    line-height: 22px;
 }
 .fixed-table-container thead>tr>th{
-    height: 44px;
-    line-height: 44px;
-    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
     text-align: center;
 }
 
 .fixed-table-container tbody>tr>td{
-    height: 45px;
-    line-height: 45px;
+    height: 20px;
+    line-height: 20px;
     font-size: 14px;
     text-align: center;
 }
@@ -535,6 +536,9 @@ div.ruler div.cursor {height:20px; width:30px; background-color:#3C6E31; color:w
 }
 table{
     table-layout: fixed;
+}
+table tr{
+    height: 38px;
 }
 #add-permission{
     padding-right: 50px;

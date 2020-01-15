@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <script type="text/javascript" src="plugins/layui/layui.js"></script>
     <script type="text/javascript" src="plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="plugins/layui/layui.js"></script>
+    <script src="plugins/Utils.js"></script>
     <script src="js/index.js"></script>
     <title>jytyd</title>
 </head>
@@ -19,123 +21,123 @@
                 <div class="layui-logo" style="color: #FFFFFF;">我是logo</div>
             </a>
             <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item"><a href="">退出</a></li>
+                <li class="layui-nav-item"><a id="exit" href="javascript:;">退出</a></li>
             </ul>
         </div>
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" id="nav-left">
-                    <li class="layui-nav-item layui-this"><a data-url="html/portalEntry.html" data-id="portalEntry" data-title="首页" href="#" class="site-demo-active" data-type="tabAdd">首页</a></li>
-                    <li class="layui-nav-item"><a data-url="html/VenueProjectManagement.html" data-id="VenueProjectManagement" data-title="场馆项目管理" href="#" class="site-demo-active" data-type="tabAdd">场馆项目管理</a></li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">场馆申请</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/VenueInformation.html" data-id="VenueInformation" data-title="场馆基本信息" href="#" class="site-demo-active" data-type="tabAdd">场馆基本信息</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/IndoorNavigation.html" data-id="IndoorNavigation" data-title="室内导航" href="#" class="site-demo-active" data-type="tabAdd">室内导航</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/ReviewList.html" data-id="ReviewList" data-title="审核列表" href="#" class="site-demo-active" data-type="tabAdd">审核列表</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">场馆管理</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/VenueIist.html" data-id="VenueIist" data-title="场馆列表" href="#" class="site-demo-active" data-type="tabAdd">场馆列表</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/timeSettings.html" data-id="timeSettings" data-title="开闭馆时间设置" href="#" class="site-demo-active" data-type="tabAdd">开闭馆时间设置</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/venueManagementRegulations.html" data-id="venueManagementRegulations" data-title="场馆规章制度管理" href="#" class="site-demo-active" data-type="tabAdd">场馆规章制度管理</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">预约管理</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/MakeAppointmentKanban.html" data-id="MakeAppointmentKanban" data-title="预约看板" href="#" class="site-demo-active" data-type="tabAdd">预约看板</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/VenueBooking.html" data-id="VenueBooking" data-title="场馆预约" href="#" class="site-demo-active" data-type="tabAdd">场馆预约</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/Appointments_TeamManagement.html" data-id="Appointments_TeamManagement" data-title="预约人员/团队管理" href="#" class="site-demo-active" data-type="tabAdd">预约人员/团队管理</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/ReservationRecord.html" data-id="ReservationRecord" data-title="预约记录" href="#" class="site-demo-active" data-type="tabAdd">预约记录</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">用户权限设置</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/UserManagement.html" data-id="UserManagement" data-title="用户管理" href="#" class="site-demo-active" data-type="tabAdd">用户管理</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/RoleManagement.html" data-id="RoleManagement" data-title="角色管理" href="#" class="site-demo-active" data-type="tabAdd">角色管理</a>
-                            </dd>
-                            <dd>
-                                <a data-url="user-permission/SysPermission.html" data-id="RightsManagement" data-title="权限管理" href="#" class="site-demo-active" data-type="tabAdd">权限管理</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">通知消息中心</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/SendMessageNotification.html" data-id="SendMessageNotification" data-title="发送消息通知" href="#" class="site-demo-active" data-type="tabAdd">发送消息通知</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/HasBeenSent.html" data-id="HasBeenSent" data-title="已发送" href="#" class="site-demo-active" data-type="tabAdd">已发送</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/CollectedNews.html" data-id="CollectedNews" data-title="收藏的消息" href="#" class="site-demo-active" data-type="tabAdd">收藏的消息</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/DeletedMessage.html" data-id="DeletedMessage" data-title="已删除的消息" href="#" class="site-demo-active" data-type="tabAdd">已删除的消息</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">新闻管理</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/NewsRelease.html" data-id="NewsRelease" data-title="发布新闻" href="#" class="site-demo-active" data-type="tabAdd">发布新闻</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/ThePublished.html" data-id="ThePublished" data-title="已发布" href="#" class="site-demo-active" data-type="tabAdd">已发布</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/DeletedNews.html" data-id="DeletedNews" data-title="已删除新闻" href="#" class="site-demo-active" data-type="tabAdd">已删除新闻</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a class="" href="javascript:;">公告管理</a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a data-url="html/announcement.html" data-id="announcement" data-title="发布公告" href="#" class="site-demo-active" data-type="tabAdd">发布公告</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/published.html" data-id="published" data-title="已发布" href="#" class="site-demo-active" data-type="tabAdd">已发布</a>
-                            </dd>
-                            <dd>
-                                <a data-url="html/DeletedNotice.html" data-id="DeletedNotice" data-title="已删除公告" href="#" class="site-demo-active" data-type="tabAdd">已删除公告</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a data-url="html/LogManagement.html" data-id="LogManagement" data-title="日志管理" href="#" class="site-demo-active" data-type="tabAdd">日志管理</a></li>
-                    <li class="layui-nav-item"><a data-url="html/DictionaryTableManagement.html" data-id="DictionaryTableManagement" data-title="字典表管理" href="#" class="site-demo-active" data-type="tabAdd">字典表管理</a></li>
-                    <li class="layui-nav-item"><a data-url="html/StatisticalReports.html" data-id="StatisticalReports" data-title="统计报表" href="#" class="site-demo-active" data-type="tabAdd">统计报表</a></li>
-                    <li class="layui-nav-item"><a data-url="html/SystemSettings.html" data-id="SystemSettings" data-title="系统设置" href="#" class="site-demo-active" data-type="tabAdd">系统设置</a></li>
+<!--                    <li class="layui-nav-item layui-this"><a data-url="html/portalEntry.html" data-id="portalEntry" data-title="首页" href="#" class="site-demo-active" data-type="tabAdd">首页</a></li>-->
+<!--                    <li class="layui-nav-item"><a data-url="venue-project/VenueProjectManagement.html" data-id="VenueProjectManagement" data-title="场馆项目管理" href="#" class="site-demo-active" data-type="tabAdd">场馆项目管理</a></li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">场馆申请</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/VenueInformation.html" data-id="VenueInformation" data-title="场馆基本信息" href="#" class="site-demo-active" data-type="tabAdd">场馆基本信息</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/IndoorNavigation.html" data-id="IndoorNavigation" data-title="室内导航" href="#" class="site-demo-active" data-type="tabAdd">室内导航</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/ReviewList.html" data-id="ReviewList" data-title="审核列表" href="#" class="site-demo-active" data-type="tabAdd">审核列表</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">场馆管理</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/VenueIist.html" data-id="VenueIist" data-title="场馆列表" href="#" class="site-demo-active" data-type="tabAdd">场馆列表</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/timeSettings.html" data-id="timeSettings" data-title="开闭馆时间设置" href="#" class="site-demo-active" data-type="tabAdd">开闭馆时间设置</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/venueManagementRegulations.html" data-id="venueManagementRegulations" data-title="场馆规章制度管理" href="#" class="site-demo-active" data-type="tabAdd">场馆规章制度管理</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">预约管理</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/MakeAppointmentKanban.html" data-id="MakeAppointmentKanban" data-title="预约看板" href="#" class="site-demo-active" data-type="tabAdd">预约看板</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/VenueBooking.html" data-id="VenueBooking" data-title="场馆预约" href="#" class="site-demo-active" data-type="tabAdd">场馆预约</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/Appointments_TeamManagement.html" data-id="Appointments_TeamManagement" data-title="预约人员/团队管理" href="#" class="site-demo-active" data-type="tabAdd">预约人员/团队管理</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/ReservationRecord.html" data-id="ReservationRecord" data-title="预约记录" href="#" class="site-demo-active" data-type="tabAdd">预约记录</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">用户权限设置</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="user-permission/UserManager.html" data-id="UserManagement" data-title="用户管理" href="#" class="site-demo-active" data-type="tabAdd">用户管理</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="user-permission/RoleManager.html" data-id="RoleManager" data-title="角色管理" href="#" class="site-demo-active" data-type="tabAdd">角色管理</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="user-permission/SysPermission.html" data-id="RightsManagement" data-title="权限管理" href="#" class="site-demo-active" data-type="tabAdd">权限管理</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">通知消息中心</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/SendMessageNotification.html" data-id="SendMessageNotification" data-title="发送消息通知" href="#" class="site-demo-active" data-type="tabAdd">发送消息通知</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/HasBeenSent.html" data-id="HasBeenSent" data-title="已发送" href="#" class="site-demo-active" data-type="tabAdd">已发送</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/CollectedNews.html" data-id="CollectedNews" data-title="收藏的消息" href="#" class="site-demo-active" data-type="tabAdd">收藏的消息</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/DeletedMessage.html" data-id="DeletedMessage" data-title="已删除的消息" href="#" class="site-demo-active" data-type="tabAdd">已删除的消息</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">新闻管理</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/NewsRelease.html" data-id="NewsRelease" data-title="发布新闻" href="#" class="site-demo-active" data-type="tabAdd">发布新闻</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/ThePublished.html" data-id="ThePublished" data-title="已发布" href="#" class="site-demo-active" data-type="tabAdd">已发布</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/DeletedNews.html" data-id="DeletedNews" data-title="已删除新闻" href="#" class="site-demo-active" data-type="tabAdd">已删除新闻</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item">-->
+<!--                        <a class="" href="javascript:;">公告管理</a>-->
+<!--                        <dl class="layui-nav-child">-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/announcement.html" data-id="announcement" data-title="发布公告" href="#" class="site-demo-active" data-type="tabAdd">发布公告</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/published.html" data-id="published" data-title="已发布" href="#" class="site-demo-active" data-type="tabAdd">已发布</a>-->
+<!--                            </dd>-->
+<!--                            <dd>-->
+<!--                                <a data-url="html/DeletedNotice.html" data-id="DeletedNotice" data-title="已删除公告" href="#" class="site-demo-active" data-type="tabAdd">已删除公告</a>-->
+<!--                            </dd>-->
+<!--                        </dl>-->
+<!--                    </li>-->
+<!--                    <li class="layui-nav-item"><a data-url="html/LogManagement.html" data-id="LogManagement" data-title="日志管理" href="#" class="site-demo-active" data-type="tabAdd">日志管理</a></li>-->
+<!--                    <li class="layui-nav-item"><a data-url="html/DictionaryTableManagement.html" data-id="DictionaryTableManagement" data-title="字典表管理" href="#" class="site-demo-active" data-type="tabAdd">字典表管理</a></li>-->
+<!--                    <li class="layui-nav-item"><a data-url="html/StatisticalReports.html" data-id="StatisticalReports" data-title="统计报表" href="#" class="site-demo-active" data-type="tabAdd">统计报表</a></li>-->
+<!--                    <li class="layui-nav-item"><a data-url="html/SystemSettings.html" data-id="SystemSettings" data-title="系统设置" href="#" class="site-demo-active" data-type="tabAdd">系统设置</a></li>-->
                 </ul>
             </div>
         </div>
