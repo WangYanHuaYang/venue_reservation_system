@@ -67,7 +67,7 @@ public class AttachmentService extends BaseService<AttachmentMapper, Attachment>
         fullPath.append(filesPath);
         fullPath.append(pathname);
 
-        long size = file.getSize() / 1024;
+        long size = file.getSize();
         attachment.setCreateTime(LocalDateTime.now());
         attachment.setUpdateTime(LocalDateTime.now());
         attachment.setAttachmentSize(FileUtils.getPrintSize(size));

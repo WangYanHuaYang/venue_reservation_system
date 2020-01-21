@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.enums.SqlLike;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.genolo.venue_reservation_system.dao.DictionariesMapper;
+import com.genolo.venue_reservation_system.model.Dictionaries;
 import com.genolo.venue_reservation_system.model.Venue;
 import com.genolo.venue_reservation_system.dao.VenueMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import org.springframework.web.multipart.MultipartFile;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +25,9 @@ import java.util.List;
  */
 @Service
 public class VenueService extends BaseService<VenueMapper, Venue> {
+
+    @Autowired
+    DictionariesMapper dictionariesMapper;
 
     /**
     * @Description: 导入 Venue (存在则刷新，不存在则新增)
@@ -56,6 +63,19 @@ public class VenueService extends BaseService<VenueMapper, Venue> {
             wrapper.like("venue_project",val.toString());
         }
         E p= super.page(page, wrapper);
+        List<Venue> venues=p.getRecords();
+        for (Venue v:venues){
+            List<String> projects=new ArrayList<String>();
+            if (v.getVenueProject()!=null&&v.getVenueProject().size()>0){
+                for (String project:v.getVenueProject()){
+                    Dictionaries dictionaries=dictionariesMapper.selectById(project);
+                    if (dictionaries!=null){
+                        projects.add(dictionaries.getDictionariesName());
+                    }
+                }
+                v.setVenueProject(projects);
+            }
+        }
         return p;
     }
 }

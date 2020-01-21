@@ -25,6 +25,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${files.path}")
     private String filesPath;
 
+    /**
+     * 日志文件根路径
+     */
+    @Value("${log.path}")
+    private String logPath;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -38,7 +44,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/")
-                .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + filesPath + File.separator);
+                .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + filesPath + File.separator)
+                .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + logPath + File.separator);
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {

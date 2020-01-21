@@ -83,7 +83,7 @@ public class VenueController {
      */
     @ApiOperation("修改 Venue")
     @RequestMapping(value = "/updateVenue", method = RequestMethod.POST)
-    private Msg updateVenue(@Valid@RequestBody Venue venue) {
+    private Msg updateVenue(@RequestBody Venue venue) {
         venue.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.updateById(venue);
         if (state) {

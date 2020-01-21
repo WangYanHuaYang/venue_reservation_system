@@ -50,9 +50,11 @@ public class AppointmentService extends BaseService<AppointmentMapper, Appointme
      * @Author: WYHY
      * @Date: 2020/1/14
      */
-    public IPage<Appointment> persionOrTeam(Page<Appointment> page,boolean teamType, Appointment appointment) throws Exception{
+    public IPage<Appointment> persionOrTeam(Page<Appointment> page,Boolean teamType, Appointment appointment) throws Exception{
         QueryWrapper<Appointment> wrapper=new QueryWrapper<Appointment>().setEntity(appointment);
-        if (teamType){
+        if (teamType==null){
+            wrapper.groupBy("reserve1,reserve2");
+        }else if (teamType){
             wrapper.isNotNull("reserve1");
             wrapper.groupBy("reserve1");
         }else {
@@ -77,7 +79,7 @@ public class AppointmentService extends BaseService<AppointmentMapper, Appointme
         E p=super.page(page, wrapper);
         List<Appointment> ps=p.getRecords();
         for (int i=0;i<ps.size();i++){
-            if (ps.get(i).getEffectiveState()==1){
+            if (ps.get(i).getEffectiveState()!=null&&ps.get(i).getEffectiveState()==1){
                 if (ps.get(i).getStartTime().isBefore(LocalDateTime.now())){
                     ps.get(i).setEffectiveState(3);
                 }else if (ps.get(i).getStartTime().isAfter(LocalDateTime.now())){

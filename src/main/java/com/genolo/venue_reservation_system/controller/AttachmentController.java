@@ -33,13 +33,16 @@ import java.util.List;
  * @author wyhy
  * @since 2020-01-03
  */
-@Api(tags = {" 附件表	接口"})
+@Api(tags = {" 附件表接口"})
 @RestController
 @RequestMapping("/attachment")
 public class AttachmentController {
 
     @Autowired
     AttachmentService baseService;
+
+    @Autowired
+    FileService fileService;
 
     @Value("${current-project.file-prefix-path}")
     private String filePrefixPath;
@@ -145,6 +148,18 @@ public class AttachmentController {
         } else {
             return Msg.FAIL();
         }
+    }
+
+    /**
+     * @Description: 获取日志文件
+     * @Param: [id]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("获取日志文件")
+    @RequestMapping(value = "/getLogDic", method = RequestMethod.POST)
+    private Msg getLogDic() {
+        return Msg.SUCCESS().add("logFile",fileService.getLogDic());
     }
 
     /**

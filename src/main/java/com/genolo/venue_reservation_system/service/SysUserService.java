@@ -87,6 +87,7 @@ public class SysUserService extends BaseService<SysUserMapper, SysUser> {
                 loginBean.setRoleNames(roleNames);
                 loginBean.setState(200);
                 loginBean.setEMail(user.getEMail());
+                loginBean.setOrganization(user.getOrganization());
                 loginBean.setUserName(user.getUserName());
                 loginBean.setPhoneNumber(user.getPhoneNumber());
                 loginBean.setPermissionTree(getPermissionFromRole(roleList));

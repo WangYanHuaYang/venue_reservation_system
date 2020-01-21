@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +24,9 @@ public class FileService {
 
     @Value("${files.path}")
     private String filesPath;
+
+    @Value("${log.path}")
+    private String logPath;
 
     public Map save(MultipartFile file,String venueName,String schoolName) throws IOException {
         StringBuilder fullPath=new StringBuilder();
@@ -60,10 +64,11 @@ public class FileService {
 
     public void delete(String fullPath) {
             FileUtils.deleteFile(fullPath);
+    }
 
-
-
-        }
+    public List<Map<String,Object>> getLogDic(){
+        return FileUtils.getFiles(logPath);
+    }
 
 
 }

@@ -5,6 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 文件工具类
@@ -173,5 +177,37 @@ public class FileUtils {
             size = size * 100 / 1024;
             return String.valueOf((size / 100)) + "." + String.valueOf((size % 100)) + "GB";
         }
+    }
+
+    /**
+
+     * 递归获取某路径下的所有文件，文件夹，并输出
+
+     */
+
+    public static List<Map<String,Object>> getFiles(String path) {
+        List<Map<String,Object>> filelist=new ArrayList<Map<String,Object>>();
+        StringBuilder url=new StringBuilder();
+        File file = new File(path);
+// 如果这个路径是文件夹
+        if (file.isDirectory()) {
+// 获取路径下的所有文件
+            File[] files = file.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                Map<String,Object> filemap=new HashMap<String,Object>();
+                url.delete(0,url.length());
+// 如果还是文件夹 递归获取里面的文件 文件夹
+                filemap.put("title",files[i].getName());
+                if (files[i].isDirectory()) {
+                    filemap.put("children",getFiles(files[i].getPath()));
+                }else {
+                    url.append("/static/");
+                    url.append(files[i].getName());
+                    filemap.put("url",url.toString());
+                }
+                filelist.add(filemap);
+            }
+        }
+        return filelist;
     }
 }

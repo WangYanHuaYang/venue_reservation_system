@@ -4,6 +4,7 @@ import com.genolo.venue_reservation_system.Util.FileUtil;
 import com.genolo.venue_reservation_system.Util.Msg;
 import com.genolo.venue_reservation_system.model.Attachment;
 import com.genolo.venue_reservation_system.model.MessageCenter;
+import com.genolo.venue_reservation_system.model.TeamUser;
 import com.genolo.venue_reservation_system.service.MessageCenterService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,10 +46,8 @@ public class MessageCenterController {
      */
     @ApiOperation("新增 MessageCenter")
     @RequestMapping(value = "/saveMessageCenter", method = RequestMethod.PUT)
-    private Msg saveMessageCenter(@RequestBody MessageCenter message_center) {
-        message_center.setCreateTime(LocalDateTime.now());
-        message_center.setUpdateTime(LocalDateTime.now());
-        boolean state = baseService.save(message_center);
+    private Msg saveMessageCenter(@RequestBody MessageCenter message_center, @RequestParam("receiveUser")List<TeamUser> users) {
+        boolean state = baseService.save(message_center,users);
         if (state) {
             return Msg.SUCCESS();
         } else {

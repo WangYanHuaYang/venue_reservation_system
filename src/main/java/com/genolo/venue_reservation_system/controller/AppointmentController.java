@@ -118,7 +118,7 @@ public class AppointmentController {
      */
     @ApiOperation("获取预约表中的团队或个人")
     @RequestMapping(value = "/getPersionOrTeam", method = RequestMethod.POST)
-    private Msg getPersionOrTeam(@RequestBody Appointment appointment,@RequestParam("isTeam") boolean isTeam, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
+    private Msg getPersionOrTeam(@RequestBody Appointment appointment,@RequestParam(value = "isTeam",required = false) Boolean isTeam, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         try {
             IPage<Appointment> state = baseService.persionOrTeam(new Page<Appointment>(pageNum, pageSize),isTeam, appointment);
             if (state.getSize() > 0) {

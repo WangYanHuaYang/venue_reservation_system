@@ -2,6 +2,8 @@ package com.genolo.venue_reservation_system.model;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import cn.afterturn.easypoi.excel.annotation.Excel;
@@ -116,6 +118,15 @@ public class MessageCenter extends Model<MessageCenter> {
     @Excel(name = "")
     private String reserve7;
 
+    @ApiModelProperty(value = "查询开始时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @TableField(exist = false)
+    private LocalDate stime;
+
+    @ApiModelProperty(value = "查询结束时间（非数据库字段）")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @TableField(exist = false)
+    private LocalDate etime;
 
     @Override
     protected Serializable pkVal() {

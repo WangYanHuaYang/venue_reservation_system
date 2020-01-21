@@ -11,6 +11,7 @@ public class LoginBean {
     private String[] roleNames;
     private Integer state;
     private String eMail;
+    private String organization;
     private String phoneNumber;
     private List<SysPermissionTree> permissionTree;
 }

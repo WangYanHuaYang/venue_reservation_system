@@ -46,18 +46,22 @@ public class VVenueInfo extends Model<VVenueInfo> {
 
     @ApiModelProperty(value = "省")
     @Excel(name = "省")
+    @TableField(condition = SqlCondition.LIKE)
     private String province;
 
     @ApiModelProperty(value = "市")
     @Excel(name = "市")
+    @TableField(condition = SqlCondition.LIKE)
     private String city;
 
     @ApiModelProperty(value = "区")
     @Excel(name = "区")
+    @TableField(condition = SqlCondition.LIKE)
     private String district;
 
     @ApiModelProperty(value = "详细地址")
     @Excel(name = "详细地址")
+    @TableField(condition = SqlCondition.LIKE)
     private String address;
 
     @ApiModelProperty(value = "经度")

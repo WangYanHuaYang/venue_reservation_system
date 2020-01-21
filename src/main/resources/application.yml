@@ -29,6 +29,11 @@ spring:
     view:
       prefix: /html/
       suffix: .html
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2000MB
+      max-request-size: 2000MB
   #热部署
   devtools:
     restart:
@@ -63,7 +68,9 @@ mybatis-plus:
 # 文件地址
 files:
   path: ${file-path:d:/venue_reservation_system}
-
+#log文件地址
+log:
+  path: ${file-path:d:/venue_reservation_system_log}
 current-project:
   file-prefix-path: http://10.44.15.17:8181/static
 

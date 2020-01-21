@@ -43,28 +43,28 @@ public class Venue extends Model<Venue> {
     @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
 
-    @ApiModelProperty(value = "场馆名称")
+    @ApiModelProperty(value = "场馆名称 *")
     @Excel(name = "场馆名称")
     @NotBlank(message = "场馆名称不能为空")
     @TableField(condition = SqlCondition.LIKE)
     private String venueName;
 
-    @ApiModelProperty(value = "省")
+    @ApiModelProperty(value = "省 *")
     @Excel(name = "省")
     @NotBlank(message = "省不能为空")
     private String province;
 
-    @ApiModelProperty(value = "市")
+    @ApiModelProperty(value = "市 *")
     @Excel(name = "市")
     @NotBlank(message = "市不能为空")
     private String city;
 
-    @ApiModelProperty(value = "区")
+    @ApiModelProperty(value = "区 *")
     @Excel(name = "区")
     @NotBlank(message = "区不能为空")
     private String district;
 
-    @ApiModelProperty(value = "详细地址")
+    @ApiModelProperty(value = "详细地址 *")
     @Excel(name = "详细地址")
     @NotBlank(message = "详细地址不能为空")
     private String address;
@@ -77,23 +77,23 @@ public class Venue extends Model<Venue> {
     @Excel(name = "纬度")
     private Double latitude;
 
-    @ApiModelProperty(value = "场馆面积")
+    @ApiModelProperty(value = "场馆面积 *")
     @Excel(name = "场馆面积")
     @NotNull(message = "场馆面积不能为空")
     private Double area;
 
-    @ApiModelProperty(value = "可容纳人数")
+    @ApiModelProperty(value = "可容纳人数 *")
     @Excel(name = "可容纳人数")
     @NotNull(message = "可容纳人数不能为空")
     private Integer numberOfPersons;
 
-    @ApiModelProperty(value = "所属学校")
+    @ApiModelProperty(value = "所属学校 *")
     @Excel(name = "所属学校")
     @TableField(condition = SqlCondition.LIKE)
     @NotBlank(message = "所属学校不能为空")
     private String schoolName;
 
-    @ApiModelProperty(value = "场馆项目")
+    @ApiModelProperty(value = "场馆项目 *")
     @Excel(name = "场馆项目")
     @NotNull(message = "场馆项目不能为空")
     @Size(min = 1,message = "至少包含一个项目")
@@ -140,7 +140,7 @@ public class Venue extends Model<Venue> {
     @Excel(name = "审核状态 0_未提交 1_待审核 2_审核通过")
     private Integer auditStatus;
 
-    @ApiModelProperty(value = "创建人id")
+    @ApiModelProperty(value = "创建人id *")
     @Excel(name = "创建人id")
     @NotBlank(message = "创建人不能为空")
     private String createUserId;
@@ -167,7 +167,7 @@ public class Venue extends Model<Venue> {
     @Excel(name = "场馆制度")
     private String reserve1;
 
-    @ApiModelProperty(value = "场馆区域划分")
+    @ApiModelProperty(value = "场馆区域划分 *")
     @Excel(name = "场馆区域划分")
     @NotNull(message = "场馆区域不能为空")
     @Size(min = 1,message = "至少包含一个区域")
