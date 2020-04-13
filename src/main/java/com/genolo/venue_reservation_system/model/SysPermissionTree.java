@@ -10,6 +10,7 @@ public class SysPermissionTree {
     private String id;
 
     private String permissionName;
+    private String title;
 
     private String permissionUrl;
 
@@ -21,11 +22,12 @@ public class SysPermissionTree {
 
     private String permissionCss;
 
-    private List<SysPermissionTree> child;
+    private List<SysPermissionTree> children;
 
     public SysPermissionTree(SysPermission sysPermission){
         this.id=sysPermission.getId();
         this.permissionName=sysPermission.getPermissionName();
+        this.title=sysPermission.getPermissionName();
         this.permissionUrl=sysPermission.getPermissionUrl();
         this.parentId=sysPermission.getParentId();
         this.permissionType=sysPermission.getPermissionType();

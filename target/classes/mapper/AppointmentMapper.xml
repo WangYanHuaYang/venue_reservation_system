@@ -24,7 +24,7 @@
         <result column="reserve1" property="reserve1" />
         <result column="reserve2" property="reserve2" />
         <result column="reserve3" property="reserve3" />
-        <result column="reserve4" property="reserve4" />
+        <result column="reserve4" property="reserve4" typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
         <result column="reserve5" property="reserve5" />
     </resultMap>
     <resultMap id="countResultMap" type="com.genolo.venue_reservation_system.model.Appointment">
@@ -42,6 +42,15 @@
 
     <select id="countNumberOfPersons" resultMap="countResultMap">
         select venue_name, venue_school,sum(number_of_persons) number_of_persons,start_time from appointment ${ew.customSqlSegment}
+    </select>
+    <select id="countAuditStatus" resultMap="BaseResultMap">
+        SELECT
+            venue_school, venue_school,
+            100*sum(case when audit_status=2 then 1 else 0 end)/count(*) audit_status,
+            start_time
+
+        FROM
+            appointment ${ew.customSqlSegment}
     </select>
 
 </mapper>

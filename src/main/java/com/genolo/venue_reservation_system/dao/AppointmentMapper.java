@@ -20,6 +20,8 @@ import java.util.List;
  */
 public interface AppointmentMapper extends BaseMapper<Appointment> {
 
-    List<Appointment> countNumberOfPersons(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Appointment> countNumberOfPersons(@Param(Constants.WRAPPER) Wrapper<Appointment> queryWrapper);
+
+    List<Appointment> countAuditStatus(@Param(Constants.WRAPPER) Wrapper<Appointment> queryWrapper);
 
 }

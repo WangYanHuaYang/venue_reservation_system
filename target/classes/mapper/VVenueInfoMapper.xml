@@ -26,6 +26,7 @@
         <result column="rest_time" property="restTime" />
         <result column="audit_status" property="auditStatus" />
         <result column="create_user_id" property="createUserId" />
+        <result column="venue_phone_number" property="venuePhoneNumber" />
         <result column="audit_user_id" property="auditUserId" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -41,5 +42,9 @@
     <sql id="Base_Column_List">
         id, venue_name, province, city, district, address, longitude, latitude, area, number_of_persons, school_name, venue_project, suitable_crowd, open_time, close_time, remarks, lunch_start_time, lunch_end_time, time_period, rest_time, audit_status, create_user_id, audit_user_id, create_time, update_time, del_state, reserve1, reserve2, reserve3, reserve4, reserve5
     </sql>
+
+    <select id="countAreaVenue" resultMap="BaseResultMap">
+        select venue_name,province,city,district,school_name,count(number_of_persons) number_of_persons from v_venue_info ${ew.customSqlSegment}
+    </select>
 
 </mapper>

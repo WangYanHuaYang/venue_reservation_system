@@ -34,10 +34,10 @@ public class ServiceUtil {
     public static SysPermissionTree getPermissionChild(SysPermissionTree permission,List<SysPermissionTree> permissionsTree){
         for (SysPermissionTree p:permissionsTree){
             if (permission.getId().equals(p.getParentId())){
-                if (permission.getChild() == null) {
-                    permission.setChild(new ArrayList<SysPermissionTree>());
+                if (permission.getChildren() == null) {
+                    permission.setChildren(new ArrayList<SysPermissionTree>());
                 }
-                permission.getChild().add(getPermissionChild(p,permissionsTree));
+                permission.getChildren().add(getPermissionChild(p,permissionsTree));
             }
         }
         return permission;

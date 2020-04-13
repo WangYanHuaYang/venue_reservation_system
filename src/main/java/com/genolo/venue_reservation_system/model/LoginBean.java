@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class LoginBean {
     private String id;
+    private String parentsId;
     private String userName;
     private String[] roleNames;
     private Integer state;

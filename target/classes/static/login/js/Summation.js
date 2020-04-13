@@ -66,11 +66,11 @@ window.onload = function() {
 	});
 	
 	//注册跳转///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//学校注册
-	// $("#schoolToRegister").click(function() {
-	//
-	// 	window.location.href = "/login/school_register.html"
-	// });
+	// 学校注册
+	$("#schoolToRegister").click(function() {
+
+		window.location.href = "/login/school_register.html"
+	});
 	// 团队注册
 	// $("#teamToRegister").click(function() {
 	//

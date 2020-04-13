@@ -1,6 +1,8 @@
 package com.genolo.venue_reservation_system.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.genolo.venue_reservation_system.Util.ServiceUtil;
 import com.genolo.venue_reservation_system.Util.Utils;
 import com.genolo.venue_reservation_system.dao.SysPermissionMapper;
@@ -81,9 +83,10 @@ public class SysUserService extends BaseService<SysUserMapper, SysUser> {
                 for (int i=0;i<user.getRoles().size();i++){
                     role=sysRoleMapper.selectOne(new QueryWrapper<SysRole>().eq("id",user.getRoles().get(i)));
                     roleList.add(role);
-                    roleNames[i]=role.getRoleName();
+                    roleNames[i]=role.getRoleDescription();
                 }
                 loginBean.setId(user.getId());
+                loginBean.setParentsId(user.getParentsId());
                 loginBean.setRoleNames(roleNames);
                 loginBean.setState(200);
                 loginBean.setEMail(user.getEMail());
@@ -147,20 +150,62 @@ public class SysUserService extends BaseService<SysUserMapper, SysUser> {
     public boolean updateById(SysUser entity) {
         entity.setUpdateTime(LocalDateTime.now());
         SysUser user=getBaseMapper().selectById(entity.getId());
-        if (!Utils.MD5(entity.getOldPassword()).equals(user.getPassword())){
-            throw new CustomException(500,"原密码错误");
-        }
         if (entity.getOldPassword()==null){
-            entity.setPassword(null);
+            entity.setPassword(user.getPassword());
+        }else if (!Utils.MD5(entity.getOldPassword()).equals(user.getPassword())){
+            throw new CustomException(500,"原密码错误");
+        }else {
+            entity.setPassword(Utils.MD5(entity.getPassword()));
         }
         return super.updateById(entity);
+    }
+
+    public boolean registerUser(SysUser entity){
+        entity.setUpdateTime(LocalDateTime.now());
+        entity.setPassword(Utils.MD5(entity.getPassword()));
+        SysUser user=getBaseMapper().selectById(entity.getId());
+        if (user.getPassword()==null){
+            return super.updateById(entity);
+        }else {
+            throw new CustomException(500,"邀请码已失效");
+        }
     }
 
     @Override
     public boolean save(SysUser entity) {
         entity.setCreateTime(LocalDateTime.now());
         entity.setUpdateTime(LocalDateTime.now());
-        entity.setPassword(Utils.MD5(entity.getPassword()));
+        if (entity.getPassword()!=null){
+            entity.setPassword(Utils.MD5(entity.getPassword()));
+        }
         return super.save(entity);
+    }
+
+    @Override
+    public <E extends IPage<SysUser>> E page(E page, Wrapper<SysUser> queryWrapper) {
+        SysUser user=queryWrapper.getEntity();
+        QueryWrapper<SysUser> wrapper = (QueryWrapper<SysUser>)queryWrapper;
+        wrapper.isNotNull("password");
+        wrapper.orderBy(true, false, "update_time");
+        E userIPage=super.page(page, queryWrapper);
+        if (user.getParentsId()!=null){
+            userIPage.setRecords(getDownUser(user.getParentsId()));
+        }
+        return userIPage;
+    }
+
+    public List<SysUser> getDownUser(String parentsId){
+        QueryWrapper<SysUser> wrapper=new QueryWrapper<SysUser>();
+        wrapper.eq("parents_id",parentsId);
+        List<SysUser> users=getBaseMapper().selectList(wrapper);
+        if (users!=null&&users.size()>0){
+            List<SysUser> userList=new ArrayList<SysUser>();
+            for (SysUser user:users){
+                userList.addAll(getDownUser(user.getId()));
+                System.out.println(user.toString());
+            }
+            users.addAll(userList);
+        }
+        return users;
     }
 }

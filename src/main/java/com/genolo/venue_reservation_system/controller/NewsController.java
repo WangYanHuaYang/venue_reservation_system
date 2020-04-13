@@ -50,7 +50,7 @@ public class NewsController {
         news.setUpdateTime(LocalDateTime.now());
         boolean state = baseService.save(news);
         if (state) {
-            return Msg.SUCCESS();
+            return Msg.SUCCESS().add("newsid",news.getId());
         } else {
             return Msg.FAIL();
         }

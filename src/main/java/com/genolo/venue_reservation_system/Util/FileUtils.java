@@ -202,6 +202,8 @@ public class FileUtils {
                     filemap.put("children",getFiles(files[i].getPath()));
                 }else {
                     url.append("/static/");
+                    url.append(file.getName());
+                    url.append("/");
                     url.append(files[i].getName());
                     filemap.put("url",url.toString());
                 }

@@ -76,7 +76,8 @@ public class SysPermission extends Model<SysPermission> {
     private Integer delState;
 
     @ApiModelProperty(value = "排序")
-    @Min(value = 1,message = "排序不能为空")
+    @NotBlank(message = "排序不能为空")
+    @Min(value = 1,message = "排序不能小于1")
     private Integer sort;
 
     @Override

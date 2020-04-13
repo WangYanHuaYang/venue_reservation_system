@@ -104,15 +104,19 @@ public class Venue extends Model<Venue> {
     @Excel(name = "适宜人群")
     private String suitableCrowd;
 
+    @ApiModelProperty(value = "联系电话")
+    @Excel(name = "联系电话")
+    private String venuePhoneNumber;
+
     @ApiModelProperty(value = "开馆时间")
     @Excel(name = "开馆时间")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
-    private LocalTime openTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    private LocalDateTime openTime;
 
     @ApiModelProperty(value = "闭馆时间")
     @Excel(name = "闭馆时间")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
-    private LocalTime closeTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    private LocalDateTime closeTime;
 
     @ApiModelProperty(value = "备注")
     @Excel(name = "备注")

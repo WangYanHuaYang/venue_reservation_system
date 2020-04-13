@@ -44,9 +44,7 @@ public class AppointmentController {
      */
     @ApiOperation("新增 Appointment")
     @RequestMapping(value = "/saveAppointment", method = RequestMethod.PUT)
-    private Msg saveAppointment(@RequestBody Appointment appointment) {
-        appointment.setCreateTime(LocalDateTime.now());
-        appointment.setUpdateTime(LocalDateTime.now());
+    private Msg saveAppointment(@RequestBody Appointment appointment) throws Exception{
         boolean state = baseService.save(appointment);
         if (state) {
             return Msg.SUCCESS();
@@ -141,12 +139,37 @@ public class AppointmentController {
      */
     @ApiOperation("根据年月日，学校名称统计预约人数")
     @RequestMapping(value = "/countNumberOfPersons", method = RequestMethod.POST)
-    private Msg countNumberOfPersons(@RequestParam(name = "isSchool") boolean isSchool,
-                                     @RequestParam(name = "isYear") boolean isYear,
-                                     @RequestParam(name = "isMonth") boolean isMonth,
-                                     @RequestParam(name = "isDay") boolean isDay,
+    private Msg countNumberOfPersons(@RequestParam(name = "isSchool",required = false) boolean isSchool,
+                                     @RequestParam(name = "isVenue",required = false) boolean isVenue,
+                                     @RequestParam(name = "isHotTime",required = false) boolean isHotTime,
+                                     @RequestParam(name = "isYear",required = false) boolean isYear,
+                                     @RequestParam(name = "isMonth",required = false) boolean isMonth,
+                                     @RequestParam(name = "isDay",required = false) boolean isDay,
                                      @RequestBody Appointment appointment){
-        List<Appointment> state = baseService.countNumberOfPersons(isSchool,isYear,isMonth,isDay,appointment);
+        List<Appointment> state = baseService.countNumberOfPersons(isSchool,isVenue,isYear,isMonth,isDay,isHotTime,appointment);
+        if (state.size()>0) {
+            return Msg.SUCCESS().add("result", state);
+        } else {
+            return Msg.SUCCESS().add("resultSet", "暂无数据");
+        }
+    }
+
+    /**
+     * @Description: 根据年月日，学校名称统计审核通过率
+     * @Param: [isSchool 是否根据学校, isYear 是否根据年, isMonth 是否根据月, isDay 是否根据日, appointment 其他条件]
+     * @return: java.util.List<com.genolo.venue_reservation_system.model.Appointment>
+     * @Author: WYHY
+     * @Date: 2020/1/14
+     */
+    @ApiOperation("根据年月日，学校名称统计审核通过率")
+    @RequestMapping(value = "/countAuditStatus", method = RequestMethod.POST)
+    private Msg countAuditStatus(@RequestParam(name = "isSchool",required = false) boolean isSchool,
+                                     @RequestParam(name = "isVenue",required = false) boolean isVenue,
+                                     @RequestParam(name = "isYear",required = false) boolean isYear,
+                                     @RequestParam(name = "isMonth",required = false) boolean isMonth,
+                                     @RequestParam(name = "isDay",required = false) boolean isDay,
+                                     @RequestBody Appointment appointment){
+        List<Appointment> state = baseService.countAuditStatus(isSchool,isVenue,isYear,isMonth,isDay,appointment);
         if (state.size()>0) {
             return Msg.SUCCESS().add("result", state);
         } else {

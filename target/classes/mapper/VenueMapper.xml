@@ -17,6 +17,7 @@
         <result column="school_name" property="schoolName" />
         <result column="venue_project" property="venueProject" jdbcType="VARCHAR"  typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
         <result column="suitable_crowd" property="suitableCrowd" />
+        <result column="venue_phone_number" property="venuePhoneNumber" />
         <result column="open_time" property="openTime" />
         <result column="close_time" property="closeTime" />
         <result column="remarks" property="remarks" />

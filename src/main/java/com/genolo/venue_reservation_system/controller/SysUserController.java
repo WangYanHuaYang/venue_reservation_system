@@ -68,6 +68,32 @@ public class SysUserController {
     }
 
     /**
+     * @Description: 获取邀请码
+     * @Param: [sys_user]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("获取邀请码")
+    @RequestMapping(value = "/getInvitationCode", method = RequestMethod.PUT)
+    private Msg getInvitationCode(@RequestBody SysUser sys_user){
+        boolean state=false;
+        try {
+            state = baseService.save(sys_user);
+        }catch (Exception e){
+            if (e.getMessage().contains("phone_number_UNIQUE")){
+                throw new CustomException(500,"手机号已被注册");
+            }else if (e.getMessage().contains("e_mail_UNIQUE")){
+                throw new CustomException(500,"邮箱已被注册");
+            }
+        }
+        if (state) {
+            return Msg.SUCCESS().add("InvitationCode",sys_user.getId());
+        } else {
+            return Msg.FAIL();
+        }
+    }
+
+    /**
      * @Description: 删除 SysUser (非逻辑删除)
      * @Param: [id]
      * @Author: wyhy
@@ -90,9 +116,43 @@ public class SysUserController {
      * @Author: wyhy
      * @Date: 2018/9/30
      */
-    @ApiOperation("修改 SysUser and 使用邀请码注册")
+    @ApiOperation("修改 SysUser")
     @RequestMapping(value = "/updateSysUser", method = RequestMethod.POST)
     private Msg updateSysUser(@Valid @RequestBody SysUser sys_user) {
+        boolean state = baseService.updateById(sys_user);
+        if (state) {
+            return Msg.SUCCESS();
+        } else {
+            return Msg.FAIL();
+        }
+    }
+
+    /**
+     * @Description: 使用邀请码注册
+     * @Param: [sys_user]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("使用邀请码注册")
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    private Msg registerUser(@RequestBody SysUser sys_user) {
+        boolean state = baseService.registerUser(sys_user);
+        if (state) {
+            return Msg.SUCCESS();
+        } else {
+            return Msg.FAIL();
+        }
+    }
+
+    /**
+     * @Description: 用户修改（无验证）
+     * @Param: [sys_user]
+     * @Author: wyhy
+     * @Date: 2018/9/30
+     */
+    @ApiOperation("用户修改（无验证）")
+    @RequestMapping(value = "/updateSysUserPassword", method = RequestMethod.POST)
+    private Msg updateSysUserPassword(@RequestBody SysUser sys_user) {
         boolean state = baseService.updateById(sys_user);
         if (state) {
             return Msg.SUCCESS();
@@ -128,10 +188,7 @@ public class SysUserController {
     @RequestMapping(value = "/selectSysUsers", method = RequestMethod.POST)
     private Msg selectSysUsers(@RequestBody SysUser sys_user, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize) {
         Page<SysUser> page = new Page<SysUser>(pageNum, pageSize);
-        QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>().setEntity(sys_user);
-        wrapper.isNotNull("password");
-        wrapper.orderBy(true, false, "update_time");
-        IPage<SysUser> state = baseService.page(page, wrapper);
+        IPage<SysUser> state = baseService.page(page, new QueryWrapper<SysUser>().setEntity(sys_user));
         if (state.getSize() > 0) {
             return Msg.SUCCESS().add("resultSet", state);
         } else {

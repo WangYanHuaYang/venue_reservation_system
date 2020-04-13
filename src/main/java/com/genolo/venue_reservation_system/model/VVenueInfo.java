@@ -54,10 +54,18 @@ public class VVenueInfo extends Model<VVenueInfo> {
     @TableField(condition = SqlCondition.LIKE)
     private String city;
 
+    @ApiModelProperty(value = "市")
+    @TableField(exist = false)
+    private List<String> citys;
+
     @ApiModelProperty(value = "区")
     @Excel(name = "区")
     @TableField(condition = SqlCondition.LIKE)
     private String district;
+
+    @ApiModelProperty(value = "区")
+    @TableField(exist = false)
+    private List<String> districts;
 
     @ApiModelProperty(value = "详细地址")
     @Excel(name = "详细地址")
@@ -96,13 +104,13 @@ public class VVenueInfo extends Model<VVenueInfo> {
 
     @ApiModelProperty(value = "开馆时间")
     @Excel(name = "开馆时间")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
-    private LocalTime openTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    private LocalDateTime openTime;
 
     @ApiModelProperty(value = "闭馆时间")
     @Excel(name = "闭馆时间")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm")
-    private LocalTime closeTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    private LocalDateTime closeTime;
 
     @ApiModelProperty(value = "备注")
     @Excel(name = "备注")
@@ -134,6 +142,10 @@ public class VVenueInfo extends Model<VVenueInfo> {
     @Excel(name = "用户名")
     @TableField(condition = SqlCondition.LIKE)
     private String createUserId;
+
+    @ApiModelProperty(value = "联系电话")
+    @Excel(name = "联系电话")
+    private String venuePhoneNumber;
 
     @ApiModelProperty(value = "用户名")
     @Excel(name = "用户名")

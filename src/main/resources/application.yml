@@ -1,12 +1,16 @@
 #访问配置
 server:
-  port: 8181
+  port: 8443
   servlet:
     context-path: /
   tomcat:
     max-threads: 1000
     uri-encoding: UTF-8
-
+  ssl:
+    key-store-type: PKCS12
+    key-store-password: wyhy1001.
+    key-store: classpath:why4.p12
+    key-alias: tomcat
 #Spring配置
 spring:
   #  Spring数据库配置

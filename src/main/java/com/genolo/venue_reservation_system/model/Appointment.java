@@ -6,8 +6,11 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.List;
+
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -34,6 +37,7 @@ public class Appointment extends Model<Appointment> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
 
     @ApiModelProperty(value = "预约人")
@@ -120,8 +124,10 @@ public class Appointment extends Model<Appointment> {
     @Excel(name = "审核原因")
     private String reserve3;
 
-    @Excel(name = "")
-    private String reserve4;
+    @ApiModelProperty(value = "场馆轮播图P1")
+    @Excel(name = "场馆轮播图P1")
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<String> reserve4;
 
     @Excel(name = "")
     private String reserve5;

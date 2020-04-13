@@ -46,8 +46,8 @@ public class MessageCenterController {
      */
     @ApiOperation("新增 MessageCenter")
     @RequestMapping(value = "/saveMessageCenter", method = RequestMethod.PUT)
-    private Msg saveMessageCenter(@RequestBody MessageCenter message_center, @RequestParam("receiveUser")List<TeamUser> users) {
-        boolean state = baseService.save(message_center,users);
+    private Msg saveMessageCenter(@RequestBody MessageCenter message_center, @RequestParam("userIds")List<String> userIds) {
+        boolean state = baseService.save(message_center,userIds);
         if (state) {
             return Msg.SUCCESS();
         } else {

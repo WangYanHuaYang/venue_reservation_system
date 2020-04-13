@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.genolo.venue_reservation_system.dao.SysUserMapper;
+import com.genolo.venue_reservation_system.dao.TeamUserMapper;
 import com.genolo.venue_reservation_system.model.MessageCenter;
 import com.genolo.venue_reservation_system.dao.MessageCenterMapper;
 import com.genolo.venue_reservation_system.model.News;
+import com.genolo.venue_reservation_system.model.SysUser;
 import com.genolo.venue_reservation_system.model.TeamUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
@@ -16,6 +20,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +30,11 @@ import java.util.List;
  */
 @Service
 public class MessageCenterService extends BaseService<MessageCenterMapper, MessageCenter> {
+
+    @Autowired
+    TeamUserMapper teamUserMapper;
+    @Autowired
+    SysUserMapper sysUserMapper;
 
     /**
     * @Description: 导入 MessageCenter (存在则刷新，不存在则新增)
@@ -52,25 +62,53 @@ public class MessageCenterService extends BaseService<MessageCenterMapper, Messa
      * @Author: WYHY
      * @Date: 2020/1/17
      */
-    public boolean save(MessageCenter entity,List<TeamUser> users) {
+    public boolean save(MessageCenter entity,List<String> userIds) {
         boolean success=false;
-        entity.setCreateTime(LocalDateTime.now());
-        entity.setUpdateTime(LocalDateTime.now());
-        for (TeamUser user:users){
-            if (StringUtils.isBlank(user.getId())){
-                entity.setReceiveUserId(user.getId());
+        List<MessageCenter> messageCenters=new ArrayList<MessageCenter>();
+        for (String userId:userIds){
+            TeamUser user=teamUserMapper.selectById(userId);
+            MessageCenter message=new MessageCenter();
+            message.setSendUserId(entity.getSendUserId());
+            message.setSendUserName(entity.getSendUserName());
+            message.setReserve1(entity.getReserve1());
+            message.setMessageContent(entity.getMessageContent());
+            message.setSendTime(LocalDateTime.now());
+            message.setCreateTime(LocalDateTime.now());
+            message.setUpdateTime(LocalDateTime.now());
+            if (user!=null){
+                if (!StringUtils.isBlank(user.getId())){
+                    message.setReceiveUserId(user.getId());
+                }
+                if (!StringUtils.isBlank(user.getMembersName())){
+                    message.setReceiveUserName(user.getMembersName());
+                }
+                if (!StringUtils.isBlank(user.getMembersPhone())){
+                    message.setReceiveUserPhone(user.getMembersPhone());
+                }
+                if (!StringUtils.isBlank(user.getMembersEMail())){
+                    message.setReceiveUserEMail(user.getMembersEMail());
+                }
+                messageCenters.add(message);
+            }else {
+                SysUser sysUser=sysUserMapper.selectById(userId);
+                if (sysUser!=null){
+                    if (!StringUtils.isBlank(sysUser.getId())){
+                        message.setReceiveUserId(sysUser.getId());
+                    }
+                    if (!StringUtils.isBlank(sysUser.getUserName())){
+                        message.setReceiveUserName(sysUser.getUserName());
+                    }
+                    if (!StringUtils.isBlank(sysUser.getPhoneNumber())){
+                        message.setReceiveUserPhone(sysUser.getPhoneNumber());
+                    }
+                    if (!StringUtils.isBlank(sysUser.getEMail())){
+                        message.setReceiveUserEMail(sysUser.getEMail());
+                    }
+                    messageCenters.add(message);
+                }
             }
-            if (StringUtils.isBlank(user.getMembersName())){
-                entity.setReceiveUserName(user.getMembersName());
-            }
-            if (StringUtils.isBlank(user.getMembersPhone())){
-                entity.setReceiveUserPhone(user.getMembersPhone());
-            }
-            if (StringUtils.isBlank(user.getMembersEMail())){
-                entity.setReceiveUserEMail(user.getMembersEMail());
-            }
-            success=retBool(getBaseMapper().insert(entity));
         }
+        success=saveBatch(messageCenters,messageCenters.size());
         return success;
     }
 
@@ -84,7 +122,7 @@ public class MessageCenterService extends BaseService<MessageCenterMapper, Messa
         if (news.getEtime()!=null){
             wrapper.le("update_time",news.getEtime());
         }
-        wrapper.groupBy("message_content,reserve1");
+//        wrapper.groupBy("message_content,reserve1");
         E p=super.page(page, wrapper);
         return p;
     }

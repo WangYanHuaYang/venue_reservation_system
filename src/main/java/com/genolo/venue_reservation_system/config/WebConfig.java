@@ -1,6 +1,12 @@
 package com.genolo.venue_reservation_system.config;
 
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -36,7 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT","PATCH")
+                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH")
                 .maxAge(3600);
     }
 
@@ -51,5 +57,55 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("redirect:login/index.html");
     }
+
+    @Bean
+
+    public Connector connector() {
+
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+
+        connector.setScheme("http");
+
+        connector.setPort(8181);
+
+        connector.setSecure(false);
+
+        connector.setRedirectPort(8443);
+
+        return connector;
+
+    }
+
+    @Bean
+
+    public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
+
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+
+            @Override
+            protected void postProcessContext(Context context) {
+
+                SecurityConstraint securityConstraint = new SecurityConstraint();
+
+                securityConstraint.setUserConstraint("CONFIDENTIAL");
+
+                SecurityCollection collection = new SecurityCollection();
+
+                collection.addPattern("/*");
+
+                securityConstraint.addCollection(collection);
+
+                context.addConstraint(securityConstraint);
+
+            }
+
+        };
+
+        tomcat.addAdditionalTomcatConnectors(connector());
+
+        return tomcat;
+
+    }
+
 
 }
