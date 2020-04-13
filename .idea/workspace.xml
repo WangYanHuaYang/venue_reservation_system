@@ -2,76 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8409c484-3b95-4b40-aa1a-54b7db1da07e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/config/CustomIdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9f772b4f-37fe-41ed-a494-7516af4b80d2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9f772b4f-37fe-41ed-a494-7516af4b80d2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9f772b4f-37fe-41ed-a494-7516af4b80d2/storage_v2/_src_/schema/venue_reservation_system.0h0BSQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9f772b4f-37fe-41ed-a494-7516af4b80d2/storage_v2/_src_/schema/venue_reservation_system.0h0BSQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/Util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/Util/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/Util/ServiceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/Util/ServiceUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/MessageCenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/MessageCenterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/NewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/NewsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/SysUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/VAttachmentVenueController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/VVenueInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/controller/VVenueInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/dao/AppointmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/dao/AppointmentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/dao/VAttachmentVenueMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/dao/VVenueInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/dao/VVenueInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/SysPermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/SysPermission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/SysPermissionTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/SysPermissionTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/VAttachmentVenue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/VVenueInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/VVenueInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/Venue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/model/Venue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/MessageCenterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/MessageCenterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/SysUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/VAttachmentVenueService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/VVenueInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genolo/venue_reservation_system/service/VVenueInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AppointmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AppointmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/VAttachmentVenueMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/VVenueInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/VVenueInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/VenueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/VenueMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/Util/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/Util/FileUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/Util/ServiceUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/Util/ServiceUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/config/WebConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/AppointmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/AppointmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/AttachmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/AttachmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/MessageCenterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/MessageCenterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/NewsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/NewsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/SysUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/SysUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VAttachmentVenueController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VAttachmentVenueController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VVenueInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VVenueInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VenueController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/controller/VenueController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/dao/AppointmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/dao/AppointmentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/dao/VVenueInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/dao/VVenueInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/Appointment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/Appointment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/LoginBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/LoginBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/MessageCenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/MessageCenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/SysPermission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/SysPermission.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/SysPermissionTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/SysPermissionTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/VAttachmentVenue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/VAttachmentVenue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/VVenueInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/VVenueInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/Venue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/model/Venue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/AppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/AppointmentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/AttachmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/AttachmentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/FileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/FileService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/MessageCenterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/MessageCenterService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/SysUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/SysUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VAttachmentVenueService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VAttachmentVenueService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VVenueInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VVenueInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VenueService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/genolo/venue_reservation_system/service/VenueService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logback-spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AppointmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AppointmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/VAttachmentVenueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/VAttachmentVenueMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/VVenueInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/VVenueInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/VenueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/VenueMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/login.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/login/js/Summation.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/login/js/Summation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +177,8 @@
     <MESSAGE value="权限管理页面修改渲染完成" />
     <MESSAGE value="用户管理模块完成，相关实体类字段校验完成，基本接口功能完善" />
     <MESSAGE value="基本接口功能完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本接口功能完善" />
+    <MESSAGE value="基本接口功能bug修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="基本接口功能bug修改" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2052" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578450135832">
@@ -274,9 +206,10 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2610" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1578534910713" />
-    <state x="2454" y="123" key="CommitChangelistDialog2" timestamp="1579571425709">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="534" y="123" key="CommitChangelistDialog2" timestamp="1586740131793">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="534" y="123" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1586740131793" />
     <state x="534" y="123" key="CommitChangelistDialog2/1920.0.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1577320629340" />
     <state x="2454" y="123" key="CommitChangelistDialog2/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1579571425709" />
     <state width="552" height="466" key="DebuggerActiveHint" timestamp="1585634888534">
@@ -345,9 +278,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="667" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1582253063276" />
-    <state x="2472" y="246" key="Vcs.Push.Dialog.v2" timestamp="1579571433463">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="552" y="246" key="Vcs.Push.Dialog.v2" timestamp="1586740149897">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="552" y="246" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1586740149897" />
     <state x="552" y="246" key="Vcs.Push.Dialog.v2/1920.0.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1577320637740" />
     <state x="2472" y="246" key="Vcs.Push.Dialog.v2/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1579571433463" />
     <state x="2755" y="387" width="343" height="275" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1578449626155">
